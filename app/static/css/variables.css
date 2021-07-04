@@ -1,0 +1,112 @@
+/* Убираем полосу прокрутки
+::-webkit-scrollbar {
+    width: 0;
+} */
+
+body {
+    margin: 0;
+    /* height: 300vh; */
+}
+
+
+/* font - size */
+
+:root {
+    --font_s: calc(1vh * 1rem)
+}
+
+:root {
+    --color-аccent: #100e19;
+    --color-main: #100e19;
+}
+
+:root {
+    --padd: .4rem
+}
+
+.color_variable_good {
+    --rate-bg-color: var(--high-rate-bg-color);
+    --rate-value-color: var(--high-rate-bg-color)
+}
+
+.color_variable_normal {
+    --rate-bg-color: var(--medium-rate-bg-color);
+    --rate-value-color: var(--medium-rate-color);
+}
+
+:root {
+    --visible-items-size: calc(var(--item-size) - 1);
+    --item-width: calc((100% - var(--main-padding)*3 - var(--main-items-padding)*var(--visible-items-size))/var(--item-size));
+    --item-height: calc((100vw - var(--main-padding)*2 - var(--main-items-padding)*var(--visible-items-size))/var(--item-size)*9/16);
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    /*  */
+    --badge-bg-color: #aaa;
+    --badge-color: #fff;
+    --low-rate-bg-color: red;
+    --medium-rate-bg-color: #aaa;
+    --medium-rate-color: #666;
+    --high-rate-bg-color: #3bb33b;
+    --overlay-light: var(--black-20);
+    --overlay-medium: var(--black-50);
+    --overlay-dark: var(--black-70);
+    --widget-bg: var(--white);
+    --content-background: #141414;
+    --card-placeholder-background: var(--gray);
+    --page-background: var(--black);
+    --bughunter-background: #4a4a4a;
+    --selection-card-overlay-gradient: linear-gradient(42deg, transparent, rgba(0, 0, 0, 0.01) 9%, rgba(0, 0, 0, 0.03) 19%, rgba(0, 0, 0, 0.07) 28%, rgba(0, 0, 0, 0.12) 38%, rgba(0, 0, 0, 0.18) 48%, rgba(0, 0, 0, 0.24) 57%, rgba(0, 0, 0, 0.3) 66%, rgba(0, 0, 0, 0.37) 74%, rgba(0, 0, 0, 0.42) 81%, rgba(0, 0, 0, 0.48) 88%, rgba(0, 0, 0, 0.53) 93%, rgba(0, 0, 0, 0.57) 97%, rgba(0, 0, 0, 0.59) 99%, var(--black-60));
+    --badge-shadow: 0 1px 1px 0 var(--black-20);
+    --header-height: 7.2rem;
+    --header-height-expanded: 7.2rem;
+    --page-min-width-mobile: 320px;
+    --page-min-width: 1024px;
+    --page-max-width: 1440px;
+    --selection-to-promo-overlap: -110px;
+    --page-offset-from-header: 2.4rem;
+    --page-offset-from-header-big: calc(2*var(--page-offset-from-header));
+    --page-offset-from-footer: 401px;
+    --promo-margin-horizontal: -60px;
+    --card-top-left-indent: 5px;
+    --badge-border-radius: 2px;
+    --badge-border-radius-big: 3px;
+    --card-border-radius: 4px;
+    --card-active-border-radius: 5px;
+    --badge-transition: 200ms ease-in-out;
+    --badge-opacity-transition: 110ms ease-in-out;
+    --font-size-body: 15px;
+    --line-height-body: 18px;
+    --player-height: 650px;
+    --continue-watching-clock-z-index: 1;
+    --promo-content-z-index: 1;
+    --card-placeholder-z-index: 1;
+    --selection-list-z-index: 2;
+    --trailer-close-z-index: 10;
+    --card-progress-z-index: 10;
+    --modal-close-icon-z-index: 10;
+    --card-overlay-z-index: 11;
+    --card-badge-z-index: 13;
+    --card-active-border-z-index: 10;
+    --carousel-container-button-z-index: 20;
+    --header-z-index: 1500;
+    --series-navigator-popup-z-index: 25;
+    --card-scale: 1.05;
+    --card-default-scale: 1.00001;
+    --card-active-border: 0.2rem;
+    --main-padding: 6rem;
+    --main-items-padding: 1.6rem;
+    --main-ear-padding: 4.4rem;
+    --item-size: 3;
+}

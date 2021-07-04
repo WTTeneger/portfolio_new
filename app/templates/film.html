@@ -1,0 +1,98 @@
+<!DOCTYPE html style='height: 100%;'>
+<html lang="en" style="overflow: hidden;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+    
+    #film_block {
+        width: 100%;
+        height: 30%;
+        border: 0px;
+        margin: 0px;
+        overflow: hidden;
+        position: relative;
+        height: max-content;
+        margin-bottom: 10px;
+        display: contents;
+    }
+    
+    .aqsq {
+        width: 100%;
+        display: flex;
+        text-align: left;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: stretch;
+        column-gap: 15px;
+        row-gap: 10px;
+        align-content: space-around;
+    }
+</style>
+
+<body id='body_films'>
+    <div class="mtrk">
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function(m, e, t, r, i, k, a) {
+                m[i] = m[i] || function() {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(80439196, "init", {
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true,
+                webvisor: true
+            });
+        </script>
+        <noscript><div><img src="https://mc.yandex.ru/watch/80439196" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+        <div id='ExitBlock' onclick="bars(this)"></div>
+
+        <div id='TransformColor'></div>
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/cod_conami.js"></script>
+        <!-- #a9a6a68f   белый -->
+    </div>
+    <div class="bs" id='bqs' style="display: flex;width: 100%; flex-direction: column; height: max-content;">
+        <!-- {{type, dt}} -->
+        <!--  -->
+        {%if type == 'id'%}
+        <div id="film_block" data-kinopoisk="{{dt}}"></div>
+        {%elif type == 'name'%}
+        <div id="film_block" data-title="{{dt}}"></div>
+        {%elif type == 'trailer'%}
+        <div id="film_block" data-player="trailer" data-title="{{dt}}"></div>
+        {%elif type == 'torrent'%}
+        <div id="film_block" data-player="torrent" data-kinopoisk="{{dt}}"></div>
+        {%endif%}
+    </div>
+
+
+
+
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/FA.js"></script>
+
+    <style>
+        #yohoho-loading {
+            background: #383838 url(/static/photo/Dancing-baby.dfdc1c16.gif) 50% 50% no-repeat;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/fdata.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/carus.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/variables.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/film_list.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/fdata.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/watch_film.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/589f606710.js" crossorigin="anonymous"></script>
+    <!--  -->
+    {% block title %} {% endblock %}
+</head>
+
+
+<body id='body_block'>
+    <div class="mtrk">
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript">
+            (function(m, e, t, r, i, k, a) {
+                m[i] = m[i] || function() {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                m[i].l = 1 * new Date();
+                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(80439196, "init", {
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true,
+                webvisor: true
+            });
+        </script>
+        <noscript><div><img src="https://mc.yandex.ru/watch/80439196" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+        <!-- /Yandex.Metrika counter -->
+        <div id='ExitBlock' onclick="bars(this)"></div>
+
+        <div id='TransformColor'></div>
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/cod_conami.js"></script>
+        <!-- #a9a6a68f   белый -->
+    </div>
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/swipers.js"></script>
+    <script src="/static/js/film_page.js"></script>
+
+    <header class="b-header js-header" style="padding-right:0px;  background: #2f2f2f66; backdrop-filter: blur(10px) brightness(0.7);">
+        <div class="b-header__wrapper">
+            <div class="b-header__container b-header__container--search">
+                <div class="btn btn--header sm-hide js-modal-open active" id='catalog_films' style="display: block;" name='Films-L' data-modal="menu">Каталог фильтров</div>
+                <div id="search">
+                    <div class="b-header__search">
+                        <form class="b-header__search-desctopform" style="display: block;">
+                            <!-- <div class="btn btn--header sm-hide js-modal-open active" data-modal="menu">Фильтры</div> -->
+                            <div id='search_pc' class="btn btn--header sm-hide js-modal-open active qweweq1" style="background: #fbbb43; border: 0px;" name="search" data-modal="menu">Поиск</div>
+                            <input oninput="finders(this)" id='search_pc' autocomplete="off" class="js-modal-extra qweweq2" type="text" name="search_data" value="">
+                            <button type="button" class="js-modal-extra search-btn qweweq2"></button>
+                        </form>
+                        <div class="b-popup js-modal b-popup--search" name='search_pc_div' data-modal="search">
+                            <span class="b-popup__overlay" id='main_search' name='s' style="  background: rgb(0 0 0 / 0%);width: 100%; left: 0;display:block;"></span>
+                            <span class="b-popup__overlay" id='main_search' name='s'></span>
+                            <div class="b-popup__container" name='search' id='close_search'>
+                                <div class="b-popup__content">
+                                    <form class="b-header__search-mobileform">
+                                        <input oninput="finders(this)" id='search_phone' class="js-modal-extra" autocomplete="off" type="text" name="search_data" value="">
+                                        <button type="button" class="search-btn close" id='search-btn close' name='search-btn close'></button></form>
+                                    <div class="b-search-result" name='search_phone_div' id='close_search'>
+                                        <div class="b-search-result__count js-modal-extra">результаты поиска:
+                                            <span id='count_rez'>0</span>
+                                            <div id='all_films' class="btn btn--header sm-hide js-modal-open" style="margin: 40px 0 40px 0; display:block;" name="all_films" data-modal="menu">Все фильмы</div>
+                                        </div>
+                                        <!-- класс ps хз зачем -->
+                                        <div class="js-modal-extra oflow_aw">
+                                            <div class="b-search-result__wrapper" id='list_finded_block'></div>
+                                            <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                                <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                            </div>
+                                            <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                                <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="btn btn--header sm-hide js-modal-open active" id='catalog_films' style="display: block;" name='Films-L' data-modal="menu">Войти</div> -->
+            </div>
+
+
+            <!-- show -->
+
+            <div class="b-popup js-modal hide b-popup--menu" id='CTLFilms' data-modal="menu">
+                <span class="b-popup__overlay" id='main_search' name='s' style="  background: rgb(0 0 0 / 0%);width: 100%; left: 0;display:block;"></span>
+                <span class="b-popup__overlay" style="right:-8px"></span>
+                <div class="b-popup__container js-custom-scrollbar ps" style="right:-8px">
+                    <div class="b-popup__content js-modal-content">
+                        <div class="b-menu__close js-menu-close" id='closeButtons' name='closeButtons' style="cursor: pointer;"></div>
+                        <div class="b-menu__wrapper js-accordeon-container" data-mobile="true">
+                            <ul class="b-menu__list b-menu__list--main b-menu__col">
+                                <li class="b-menu__list-item"> <a href="/filters?ProductFilter=top_main&page=1">ТОП 250</a></li>
+                                <li class="b-menu__list-item"> <a href="/filters?ProductFilter=top_now&page=1">лидеры сейчас</a></li>
+                                <!-- <li class="b-menu__list-item"> <a href="/nn">новинки</a></li> -->
+                                <li class="b-menu__list-item"> <a href="/filters?ProductFilter=top_await&page=1">ожидает весь мир</a></li>
+                                <!-- <li class="b-menu__list-item"> <a href="/collections">подборки </a></li> -->
+                            </ul>
+                            <div class="b-menu__accordeon b-menu__col" style="width: 100%;">
+                                <div class="b-menu__accordeon-title js-accordeon-open" data-mobile="true" style="  display: block; text-align: center;">жанры</div>
+                                <ul class="b-menu__accordeon-list" style="  display: flex; flex-direction: column; flex-wrap: wrap; text-align: center; align-content: center;   height: 35vh;">
+                                    {% if test%}
+                                    <li class="b-menu__accordeon-item">
+                                        <a href="/catalog?ProductFilter%5Bgenre%5D%5B%5D=1">asd</a>
+                                    </li>
+                                    {%else%} {%for el in range(18)%} {%if loop.index > 12%}
+                                    <li class="b-menu__accordeon-item item_in_pc"> <a href="/filters?ProductFilter={{genres['genres'][el]['id']}}&page=1">{{genres['genres'][el]['genre']}}</a></li>
+                                    {%else%}
+                                    <li class="b-menu__accordeon-item"> <a href="/filters?ProductFilter={{genres['genres'][el]['id']}}&page=1">{{genres['genres'][el]['genre']}}</a></li>
+                                    {%endif%} {%endfor%} {%endif%}
+                                    <!-- <li class="b-menu__accordeon-item"> <a href="/catalog?ProductFilter%5Bgenre%5D%5B%5D=22">жанр</a></li> -->
+
+                                </ul>
+                                <div class="b-menu__list b-menu__list-sub" style="margin-top: 48px; text-align: center;">
+                                    <div class="b-menu__list-item"> <a href="/catalogFilter">Все жанры — {{genres['genres']|length}}</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                    </div>
+                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--  -->
+    {% block body%}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,470 @@
+{% extends 'header_base.html' %} {% block title %}
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/film_page.js"></script>
+<script src="/static/js/clickerPointer.js"></script>
+
+<title>AA · {{data['data']['nameRu']}}</title>
+<link rel="stylesheet" type="text/css" href="/static/CSS/auth.css">
+<!--  -->
+{% endblock %} {% block body %}
+
+
+<div>
+    <div class="b-content__layout">
+        <div class="b-background js-bg-change" style="
+                                            background: linear-gradient( 180deg, rgba( 47, 188, 242, 1) 0%, rgba(0, 0, 0, 0) 100%);
+                                            background-repeat: no-repeat;    
+                                        "></div>
+        <div class="b-content__container">
+            <div class="b-card">
+
+                <div class="b-content__wrapper">
+                    <div class="b-card__row">
+                        <div class="b-card__col b-card__col--small b-card__col--text-center">
+                            <div class="b-card__img">
+                                {%if test%}
+                                <img class="js-img-bgcolro" src="//kinopoisk-ru.clstorage.net/14J6tn216/1b17f1asO/kOtC-Q1XAYHaXWJfL9wI_5nuIJFoJrexxPLp4UlZwMJ-d7n8U__8xETlYhNNC3MtgQg7BKmMSFh7EmNWIaifa6HiH_UAKi399kgaI16AIOLRlxXlaGbekJ3inaw8NLx-vtdxWZtnAGTEVOcKSBcKWPRtO0nQzWE5R1dmn43krmI8P5YNzUPEod7lzz9T-LirEZMUHdhH66kYi4H9xYWcrmZjNf17U9wAVBSbfvQSKiQM_Zfd_DENRMfPfsv88EbajJdiraU_jNHGxX_fk4ho55Vb8E0g01vJ7P9tmdH1LCIOY_3Fx8-glMgY776oDjrUBMHfFVANPTBTh37zaCACWoxTJi0Ve3TZRhGPR8NIZOdFa4w9QGdfkcw_FYU1icRSAvNF8VeTnGRE0DtqQILm0ATx12mosUXEH88KC0D8Lg7MCxbh7YcY2XJld8P_DAgPBc9Q6Ww_G4FEi-GZOSW8QvL35ZWzV-SUYBDTMqgiPjgcQd8VCDExOO8Hbvf8rN5SmC-O8VmbBLFWmUs3d3yE47Ur1KXk6yOh4JMFESVZYLZORz3lU49QTPBQgzL84o7QQOlXGdQBBaz7W37b7Py-4rwP-rXFl2ARYoVPdytUIHNlg8Q5YJ-rbYDjiRlJsZwWbhs94X8_lNzUSMMGNOZuSDCNW7mEPSE866_uS6yMpv44b_4lybPkgcIdm0Mv9OR3EYO4PehPhw2Yd5VJUeWsRtIHOXnHe3B8QPjnZkx-AriMDeMZ1FlNnNsrEk8YcFL2wC_WHdEP0D1OiZ-3fwRQM6XvTO0wN7916Ae1jU0p9LbW92V9pz90WHwUt5ZYVnKwmP0XHTDJqXwnO5rrIGCaLghz7uEVx4wNsnVjx0OU8OMRz7R52Muv7XxDtX1l9WS29jNRYf8_8PS44Nde9BICeIhpxxV03fH8-6tqi0hM2toYk5J1TSd8EfKBGzPjbJjTwT88EaTfRyEYa4HxTW1kllZjLRH7_9xkwPjvGnzG2myMSRfJSKkFJDMjBt_UXLaChItOCSlfFJGucYM7b-AUN6UHPKUcE6MBBLMV0WlNyOZmi-Fhf19wFFxM0x5Ucv5Q7DXPMaxh_VSn1wZHyCwyHowT_rWFgxQZPkmbB2swNEOxx_AFQJOvxbAnlY01eSxqzl-5lT9DfBTAlHOOVMYuMNiFG1W84T3cY8-GdzTUKpq0L3Y1Ff90KV6FN0tvmHwvPTNMBcQvg-G4Gw3ZoTHcRnrjzdVDUxjk6OQ3QqRG2niAfV-hdE1x0GfLLi_QyIaGICfOlaF38GX2nTcrK1CEV5Xn8G1wc0NJ8Ot52d257L4mZ5H5f5Ns6Az0w_7AFpa09HUL0eCxCbwrG6IrSDjemghTDiXFC-jlQoV_O5dsNOcpu3wVaFM7pTSvhfm5pbzenpPNQQPDCCSYSEeCDIpmzEjh7xXMpX3cW7uC8_jooqIc6-adbd9Q4cIFezffbDRbMVtEcfhbK7EQm4GlOeksIn77te0P5_jIDDDrBqwu-nAIjSMRYNkZqM_f-ndEuD4iTK9yAQW78O22iQujc8AoT4EXePGw47sNHKuZ4dUlHELqn9kRf-MYEDh4Bx504p7oSEEDTYh9aZD3F55voHz--vD_kpmpEyThegHz9-d86Gexo1wN-KvTgUDv2YGJ9Sw6SvMxGetzjJSUTPvyCOb-SPCdIxn0qQE0a8sqM_T0Pm5U8-qZwScE6b7psyf7yHDHCUc8oWwz64FA903d_S3sNpYzFWkDz1REOLg7ytSW-uzsHbM9eF2FyBtX0rewoL7WHPOStZ3bwClOgaeDb3xkR4XT0AE8tydheDf9BVllsBIC9y05b_9MjJisF45Q2rro-OnbITixNZyn24J_yMySBvDX2i2x2wydLsUHexNICL9BJ4C5VCdXmbAP0SllPVyqVmu9sTND_KRouFfyOB6mYGxZA00kPfmcU5PSWzC8SiYkL2JxYasUiVp1u9PbnJiz3avEcRg7gzVcN73x_fno0iqzbVnPG6B4eBjLaoyC5tCcsdcpqPH9AEMT2ksYyHI2vAuejSGXXA2uWe-D8wz0572LWKFwx8OhYMs58Tk9IOKmw8Ud6wtcZOSs2_IkHh54WNEPmaRJ9US7TxJL7PT26tCPWsHJU2TxItUjy_NcmPNRE6jhyEMjgRTHDaUlSVRGDrdJjddz5Ejo0Av2kMI2nJDxsyWI2ZmcO0-SX2ig8tJUY26hGTOMIaplzzsTYJCPGe8ABchL64Voe5mpQT3M6pZP4bHLs6B4EET_xnQi2kSYDW-laMEJmEs7Zj9gPF6WAB8WlbG_BPXKrRvr25A4J0FrBC1o_4_JxP8RSV11UNIGy5WBD2dMzFQ02z6YkloQnP0fjUC9sQDLh2pbJNTKpkQvliXJC_AxTqWTq5OQvI-968gN7BPLBXgnzSk1CTyWhkNxfSeLDIhEkONSPN7ykID5I5WgDZE0Hy82X2zcygJMC8p9BasQoYrhM9sDnCBLnedI4XgTGzGwj8XRTbUcjm7XpUVzX9CI0MTL5kSOImjAxcMVRD15_Pe_-gc08KrmMNceaZmD_LHChR97L8AIQ5VXEBl4b9915K8ZYflVvNLa231tT8eo8Hz0Z5IM8pbIQElDobz9Acjrow4jPHTW8jzX9qEdkwixJh33I5N49GMBi4TxOJ8rxYhLWfFpVRyu7pcx1UuLkJhISJNCrN4KsJhBN7GESXHUs_tSa2wMNj5EY_4BwRsogTaZpwOrkNT3xT8Ugdi7PzUU78ldrW1Eip7HxYkj-1hIQLiTPoj2Nri4xUuRLLltLHfXcnsY6KaitNcKpQH_6OHypYe_f8g0U6WjSHWcZyeBlPd9SYkJbAb29yUR0-t0eFAQ01Igji5c6LUPoSRJmfDfuxZX5KA60kh3jmEhr4R5Vp3jO9PE4Etd5xSxrHMHxdg_OZFV1UhS3nsl6a9fwOQwXDeadIam-PjhF0GgzZ2swxvw#DSD"
+                                    alt="">
+                                <div class="b-card__img-ratinglabels">
+                                    <div class="b-ratinglabel" style="cursor: pointer;">
+
+                                        <div class="b-ratinglabel__value">10</div>
+                                        <div class="b-ratinglabel__title">IMDb</div>
+                                    </div>
+                                </div>
+                                {%else%}
+                                <img class="js-img-bgcolro" src="{{data['data']['posterUrl']}}" alt="">
+                                <div class="b-card__img-ratinglabels">
+                                    <div class="b-ratinglabel" style="cursor: pointer;" onclick='window.open(`https://www.imdb.com/title/{{data["externalId"]["imdbId"]}}`);'>
+
+                                        <div class="b-ratinglabel__value">{{data['rating']['ratingImdb']}}</div>
+                                        <div class="b-ratinglabel__title">IMDb</div>
+                                    </div>
+                                </div>
+
+                                {%endif%}
+                            </div>
+                        </div>
+                        <div class="b-card__col b-card__col--large">
+                            <div class="b-card__head">
+                                <h1 class="b-card__title">{{data['data']['nameRu']}}</h1>
+                                <div class="b-card__favorite js-modal-open" data-item-id="3144" data-modal="login"></div>
+                            </div>
+                            <div class="b-card__body">
+                                <ul class="b-card__available">
+                                    {%if data['data']['nameEn']%}
+                                    <div class="b-card__price-item">
+                                        <div class="b-card__price-currentprice">{{data['data']['nameEn']}}</div>
+                                    </div>
+                                    {%else%}
+                                    <div class="b-card__price-item">
+                                        <div class="b-card__price-currentprice"></div>
+                                    </div>
+                                    {%endif%}
+                                </ul>
+                                <div class="b-card__price">
+                                    <div class="b-card__price-item">
+                                        <a class="btn btn--primary js-addToCart " href="#Starter_dev_s">Смотреть</a>
+                                    </div>
+                                    <div class="b-card__price-item" style="padding-left: 1%;" onclick='window.open(`{{data["data"]["webUrl"]}}`);'>
+                                        <a class="btn btn--primary-KP js-addToCart " data-item-id="3144">Кинопоиск</a>
+                                    </div>
+                                    <div class="b-card__price-items" style="display: none;">
+                                        <div class="b-card__price-item">
+                                            <div class="b-card__price-currentprice">2999 ₽</div>
+                                        </div>
+                                        <div class="b-card__price-item">
+                                            <div class="b-card__price-oldprice">3419 ₽</div>
+                                        </div>
+                                        <div class="b-card__price-item">
+                                            <div class="b-card__price-discount">-12%</div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                {%if test%}
+                                <div class="b-card__subinfo">
+
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">Страна выпуска</div>
+                                        <div class="b-card__subinfo-body"> <span>Чечня</span></div>
+                                        <div class="b-card__subinfo-body"> <span>НЕИЗВЕСИНО</span></div>
+                                    </div>
+
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">Слоган</div>
+                                        <div class="b-card__subinfo-body">
+                                            <a class="">ВАУ ВОЛК</a> </div>
+                                    </div>
+
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">DATA</div>
+                                        <div class="b-card__subinfo-body">
+                                            <a class="">VALUE</a>
+                                        </div>
+                                    </div>
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">DATA</div>
+                                        <div class="b-card__subinfo-body">
+                                            <a class="">VALUE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%else%}
+                                <div class="b-card__subinfo">
+
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">Страна выпуска</div>
+                                        {%if data['data']['countries'][0]['country'] %}
+                                        <div class="b-card__subinfo-body"> <span>{{data['data']['countries'][0]['country']}}</span></div>
+                                        {%else%}
+                                        <div class="b-card__subinfo-body"> <span>НЕИЗВЕСИНО</span></div>
+                                        {%endif%}
+                                    </div>
+
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">Слоган</div>
+                                        <div class="b-card__subinfo-body">
+                                            <a class="">{{data['data']['slogan']}}</a> </div>
+                                    </div>
+
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">DATA</div>
+                                        <div class="b-card__subinfo-body">
+                                            <a class="">VALUE</a>
+                                        </div>
+                                    </div>
+                                    <div class="b-card__subinfo-item">
+                                        <div class="b-card__subinfo-head">DATA</div>
+                                        <div class="b-card__subinfo-body">
+                                            <a class="">VALUE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="b-card__row b-card__row--mobile-reverse">
+                        <div class="b-card__col b-card__col--small b-card__col--mobile-container">
+                            <div class="b-card__table">
+                                <div class="b-card__table-item">
+                                    <div class="b-card__table-title">Жанр</div>
+                                    <div class="b-card__table-value">
+                                        {%for el in data['data']['genres']%}
+                                        <a class="" href="/find?genres{{el['genre']}}">{{el['genre']}}</a>, {%endfor%}
+                                    </div>
+                                </div>
+                                <!-- <div class="b-card__table-item">
+                                        <div class="b-card__table-title">Платформа</div>
+                                        <div class="b-card__table-value"> <span>PC</span></div>
+                                    </div> -->
+                                <div class="b-card__table-item">
+                                    <div class="b-card__table-title">Дата выхода</div>
+                                    <div class="b-card__table-value"> <span>{{data['data']['premiereWorld']}}</span></div>
+                                </div>
+
+                                <div class="b-card__table-item">
+                                    <div class="b-card__table-title">Разработчик</div>
+                                    <div class="b-card__table-value">
+                                        <a>{{data['data']["distributorRelease"]}}</a>
+                                    </div>
+                                </div>
+                                <div class="b-card__table-item">
+                                    <div class="b-card__table-title">ДАТА</div>
+                                    <div class="b-card__table-value">
+                                        <a href="#">VALUE</a> </div>
+                                </div>
+                                <div class="b-card__table-item">
+                                    <div class="b-card__table-title">ДАТА</div>
+                                    <div class="b-card__table-value">
+                                        <a href="#">VALUE</a> </div>
+                                </div>
+                                <div class="b-card__table-item">
+                                    <div class="b-card__table-title">ДАТА</div>
+                                    <div class="b-card__table-value">
+                                        <a href="#">VALUE</a> </div>
+                                </div>
+                            </div>
+                            <div class="b-card__extendinfo">
+                                <div class="b-card__extendinfo-icon b-card__extendinfo-icon--steam js-tooltip" data-title="Достижения Steam"></div>
+                                <div class="b-card__extendinfo-icon b-card__extendinfo-icon--steamcards js-tooltip" data-title="Коллекционные карточки"></div>
+                                <div class="b-card__extendinfo-icon b-card__extendinfo-icon--gamepad js-tooltip" data-title="Поддержка геймпада"></div>
+                                <div class="b-card__extendinfo-icon b-card__extendinfo-icon--singleplayer js-tooltip" data-title="Одиночная игра"></div>
+                                <div class="b-card__extendinfo-icon  b-card__extendinfo-icon--steamcloud js-tooltip" data-title="Steam Cloud"></div>
+                            </div>
+                        </div>
+                        <div class="b-card__col b-card__col--large">
+                            <div class="b-card__slider js-tab-slidercontent">
+                                <div class="b-card__slider-buttons">
+                                    <div id='photo-slider' name='b-card-1' class="b-card__slider-button js-tab-button active" data-tab-index="1">Скриншоты</div>
+                                    <div id='trailer-slider' name='b-card-1' class="b-card__slider-button js-tab-button" data-tab-index="2">Трейлеры </div>
+                                </div>
+                                <div class="b-card__slider-wrapper">
+                                    <div tag='photo-slider' class="b-card__slider-content active js-tab-content sliser" data-tab-index="1">
+                                        <div class="js-slider-tab slick-initialized slick-slider">
+                                            <div class="slick-list draggable qqq_Www">
+                                                <div class="slick-track animation-slick-track" style="opacity: 1; width: max-content; transform: translate3d(0px, 0px, 0px);margin:0;">
+
+                                                    <!-- <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 90vw;">
+                                                            <div>
+                                                                <div class="b-card__slider-item" style="width: 100%; display: inline-block;">
+                                                                    <div class="b-card__slider-image">
+                                                                        <a class="js-fb" href="https://static.gabestore.ru/screen_product/to-oyQ_hu2ntRCEMy24O97br-RiEVZ_g.jpg" data-fancybox="gallery" tabindex="0"> <img src="https://static.gabestore.ru/screen_product/to-oyQ_hu2ntRCEMy24O97br-RiEVZ_g.jpg"></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+
+                                                    {%for el in photo_data['frames']%}
+                                                    <!--  -->
+                                                    {% if 10 > loop.index %}
+                                                    <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 90vw;">
+                                                        <div>
+                                                            <div class="b-card__slider-item" style="width: 100%; display: inline-block; ">
+                                                                <div class="b-card__slider-image">
+                                                                    <a class="js-fb" style="  width: 100%; height: 264px;" data-fancybox="gallery" tabindex="0">
+                                                                        <img style="width: 100%; height: 100%; object-fit: cover;" src="{{el['preview']}}"></a>
+                                                                    <!--  -->
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {%endif%}
+
+
+                                                    <!--  -->
+                                                    {%endfor%}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="b-control">
+                                            <div name='roll_seting_1' onclick="roll('right', 1, this)" class="b-control__btn b-control__btn--up js-slider-next slick-arrow" aria-disabled="false"></div>
+                                            <div name='roll_seting_1' onclick="roll('left', 1, this)" class="b-control__btn b-control__btn--down js-slider-prev slick-arrow slick-disabled" aria-disabled="true" style=""></div>
+                                        </div>
+                                    </div>
+
+
+                                    <div tag='trailer-slider' class="b-card__slider-content js-tab-content sliser" data-tab-index="1">
+                                        <div class="js-slider-tab slick-initialized slick-slider">
+                                            <div class="slick-list draggable qqq_Www">
+                                                {%if test%}
+                                                <div class="slick-track animation-slick-track" style="opacity: 1; width: max-content; transform: translate3d(0px, 0px, 0px);margin:0;">
+                                                    <div onclick='window.open("333");' class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 90vw;">
+                                                        <div>
+                                                            <div name='b-card-item-photo' class="b-card__slider-item">
+                                                                <div class="b-card__slider-image b-card__slider-image--videopreview">
+                                                                    <a class="js-fbd" style="width: 100%;height: 260px;"><img style="width: 100%; height: 100%; object-fit: cover;" src=""></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {%else%}
+                                                <div class="slick-track animation-slick-track" style="opacity: 1; width: max-content; transform: translate3d(0px, 0px, 0px);margin:0;">
+                                                    {% for el in range(5)%}
+                                                    <!--  -->
+
+                                                    {% if trailer_data != none and trailer_data['trailers'][el]%}
+                                                    <!--  -->
+                                                    {% if trailer_data['trailers'][el]['site'] == 'YouTube' or trailer_data['trailers'][el]['site'] == 'YOUTUBE'%}
+                                                    <div onclick='window.open(`{{trailer_data["trailers"][el]["url"]}}`);' class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 90vw;">
+                                                        <div>
+                                                            <div name='b-card-item-photo' class="b-card__slider-item">
+                                                                <div class="b-card__slider-image b-card__slider-image--videopreview">
+                                                                    <a class="js-fbd" style="width: 100%;height: 260px;"><img style="width: 100%; height: 100%; object-fit: cover;" src="{{trailer_data['trailers'][el]['prevew']}}"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- https://img.youtube.com/vi/r5c0-TFP18g/maxresdefault.jpg -->
+                                                    <!-- ttps://www.youtube.com/watch?v=r5c0-TFP18g -->
+                                                    {%endif%}{%endif%} {%endfor%}
+                                                </div>
+                                                {%endif%}
+                                            </div>
+                                        </div>
+                                        <div class="b-control">
+                                            <div name='roll_seting_2' onclick="roll('right', 2, this)" class="b-control__btn b-control__btn--up js-slider-next slick-arrow" aria-disabled="false"></div>
+                                            <div name='roll_seting_2' onclick="roll('left', 2, this)" class="b-control__btn b-control__btn--down js-slider-prev slick-arrow slick-disabled" aria-disabled="true" style=""></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="b-card__row">
+                        <div class="b-card__col b-card__col--small">
+                            <div class="js-card__slideritem">
+                                <div class="b-card__slideritem-buttons">
+                                    <div id='similars-slider' name='b-card-2' class="b-card__slideritem-button js-tab-button active" data-tab-index="1">похожие фильмы</div>
+                                    <div id='sequels-slider' name='b-card-2' class="b-card__slideritem-button js-tab-button" data-tab-index="2">Сиквелы и приквелы</div>
+                                </div>
+                                <div class="b-card__slideritem-wrapper">
+                                    <!-- Похожие фильмы -->
+                                    <div tag='similars-slider' class="b-card__slideritem-content js-tab-content active" data-tab-index="1">
+                                        <h4 class="h4">
+                                        </h4>
+                                        <div class="js-slider-tab slick-initialized slick-slider">
+                                            <div class="slick-list draggable">
+                                                <div class="slick-track animation-slick-track" style="opacity: 1; width: max-content; transform: translate3d(0px, 0px, 0px);">
+                                                    {%for el in similars_data['items']%}
+                                                    <div class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 12rem;" tabindex="-1">
+                                                        <div>
+                                                            <div class="b-card__slideritem-item" style="width: 100%; display: inline-block;">
+                                                                <div class="shop-item" style="height: 20rem;">
+                                                                    <a class="shop-item__image" href="/infofilm/{{el['filmId']}}" tabindex="-1"><img class=" ls-is-cached loaded" src="{{el['posterUrl']}}" alt="{{el['nameRu']}}" data-image="{{el['posterUrl']}}">
+                                                                        <div class="shop-item__favorite js-modal-open" data-item-id="2398" data-modal="login"></div>
+                                                                    </a><a class="shop-item__name" href="/infofilm/{{el['filmId']}}" tabindex="-1">{{el['nameRu']}}</a>
+                                                                    <div class="shop-item__price">
+                                                                        <div class="shop-item__price-current"></div>
+                                                                        <div class="shop-item__price-discount"></div>
+                                                                    </div>
+                                                                    <a class="btn btn--primary js-addToCart " href="/infofilm/{{el['filmId']}}" data-item-id="2398" tabindex="-1">К&nbsp;фильму</a> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {%endfor%}
+
+                                                    <!-- Всего 18 -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="b-control">
+                                            <div name='roll_seting_3' onclick="roll('left', 3, this)" class="b-control__btn b-control__btn--up js-slider-prev slick-arrow" style="opacity: 0.3"></div>
+                                            <div class="b-control__progressbar">
+                                                <div id="Sliser_progress_3" class="b-control__progressbar-value" style="width: 12.5%"></div>
+                                            </div>
+                                            <div name='roll_seting_3' onclick="roll('right', 3, this)" class="b-control__btn b-control__btn--down js-slider-next slick-arrow" style=""></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Сиквлы и приквелы -->
+                                    <div tag='sequels-slider' class="b-card__slideritem-content js-tab-content" data-tab-index="1">
+                                        <h4 class="h4">
+                                        </h4>
+                                        <div class="js-slider-tab slick-initialized slick-slider">
+                                            <div class="slick-list draggable">
+                                                <div class="slick-track animation-slick-track" style="opacity: 1; width: max-content; transform: translate3d(0px, 0px, 0px);">
+                                                    {%if sequels_data !=false%}
+                                                    <!--  -->
+                                                    {%for el in sequels_data%}
+                                                    <div class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 12rem;" tabindex="-1">
+                                                        <div>
+                                                            <div class="b-card__slideritem-item" style="width: 100%; display: inline-block;">
+                                                                <div class="shop-item" style="height: 20rem;">
+                                                                    <a class="shop-item__image" href="/infofilm/{{el['filmId']}}" tabindex="-1"><img class=" ls-is-cached loaded" src="{{el['posterUrl']}}" alt="{{el['nameRu']}}" data-image="{{el['posterUrl']}}">
+                                                                        <div class="shop-item__favorite js-modal-open" data-item-id="2398" data-modal="login"></div>
+                                                                    </a>
+                                                                    <a class="shop-item__name" href="/infofilm/{{el['filmId']}}" tabindex="-1">{{el['nameRu']}}</a>
+                                                                    <div class="shop-item__price">
+                                                                        <!-- <div class="shop-item__name">{{el['nameEn']}}</div> -->
+                                                                        <div class="shop-item__price-discount">{{el['relationType']}}</div>
+                                                                    </div>
+                                                                    <a class="btn btn--primary js-addToCart " href="/infofilm/{{el['filmId']}}" data-item-id="2398" tabindex="-1">К&nbsp;фильму</a> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {%endfor%} {%endif%}
+                                                    <!-- Всего 18 -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="b-control">
+                                            <div name='roll_seting_4' onclick="roll('left', 4, this)" class="b-control__btn b-control__btn--up js-slider-prev slick-arrow" style="opacity: 0.3"></div>
+                                            <div class="b-control__progressbar">
+                                                <div id="Sliser_progress_4" class="b-control__progressbar-value" style="width: 12.5%"></div>
+                                            </div>
+                                            <div name='roll_seting_4' onclick="roll('right', 4, this)" class="b-control__btn b-control__btn--down js-slider-next slick-arrow" style=""></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="b-card__col b-card__col--large">
+                            <div class="b-tabs b-tabs--content js-tab">
+                                <div class="b-tabs__head js-custom-scrollbar ps">
+                                    <div onclick="change_data(1)" class="b-tabs__head-item js-tab-button active" data-tab-index="1">Обзор</div>
+                                    <div onclick="change_data(2)" class="b-tabs__head-item js-tab-button " data-tab-index="2">Факты</div>
+                                    <div onclick="change_data(3)" class="b-tabs__head-item js-tab-button " data-tab-index="3">...</div>
+                                    <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+                                        <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+                                    </div>
+                                    <div class="ps__rail-y" style="top: 0px; right: 0px;">
+                                        <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+                                    </div>
+                                </div>
+                                <div class="b-tabs__body">
+                                    <div class="js-tab-content active" data-tab-index="1">
+                                        <div class="b-card__tabdescription">
+                                            <h2><strong>Осторожно, космический обзор</strong></h2>
+                                            {%if test%} ОБЗОР {%else%} {{data['data']['description']}} {%endif%}
+                                        </div>
+
+                                    </div>
+
+                                    <div class="js-tab-content" data-tab-index="1">
+                                        <div class="b-card__tabdescription">
+                                            <h2><strong>Осторожно, тут факты</strong></h2>
+                                            {%if test%}
+                                            <p>ЁУ факты</p>
+                                            {%else%}
+                                            <!--  -->
+                                            {%for a in range(5)%}
+                                            <!--  -->
+                                            {% if data['data']['facts'][a]%}
+                                            <p>{{data['data']['facts'][a]}}</p>{%endif%} {%endfor%}{%endif%}
+                                        </div>
+                                    </div>
+
+                                    <div class="js-tab-content" data-tab-index="1">
+                                        <div class="b-card__tabdescription">
+                                            <h2><strong>Осторожно, тут чёрная дыра</strong></h2>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="Starter_dev_s" id='Starter_dev_s'>
+                        <div class="div_parent_film" style="padding: 0;">
+                            <div id='film_block_v' style="height: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="" style="text-align: center;">
+                        <a class="btn btn--primary js-addToCart " href="/film/torrentcatalog/{{data['data']['nameEn']}}">torrent</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="Fut" style="  margin-top: 30px;">
+        <div class="contentFut data_block" style="padding-bottom: 1rem;">
+            <p style="margin-block-end: 0em;">Made with love from <br><br><a class="A_href" href="/#About">Amal Agishev</a></p>
+        </div>
+    </footer>
+</div>
+
+
+<samp id_film={{film_id}} id='idkfilm'></samp>
+<script src='/static/js/FixColor.js'></script>
+<script script src="/static/js/aFilms.js"></script>
+<script>
+    roll('left', 3, 'asd')
+    roll('left', 4, 'asd')
+</script>
+<!-- <script script src="/static/js/aFilms.js"></script> -->
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'header_base.html' %} {% block title %}
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/clickerPointer.js"></script>
+<script src="/static/js/filter_page.js"></script>
+<title>AA · Фильты</title>
+<link rel="stylesheet" type="text/css" href="/static/CSS/auth.css">
+<!--  -->
+{% endblock %} {% block body %}
+
+<div>
+    <div class="b-content__layout" style="overflow: visible;">
+        <div class="main_div">
+
+        </div>
+        <div class="Starter_dev">
+            <div class="MD">
+                <div class='block_category' name="film_waiting">
+                    <div name='title_block'>
+                        <h2 style="margin: 5px 5px 10px 5px;" id='film_' name='{{filters}}'>{{name}}</h2>
+                        <svg width="1.8rem" style="  margin-top: .5vw;" height="1.8rem" viewBox="0 0 18 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="BaseList__title-link-icon--3s9OQ" data-tid="21651319">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M10.704 8.7348L5 3.46961L6.35656 2L13.6526 8.7348L6.35656 15.4696L5 14L10.704 8.7348Z"></path>
+                        </svg>
+                    </div>
+                    <div style="position: relative;" class="osnova_slada">
+                        <div name='Slider_film_popular' class="Slider_div">
+
+                            <div name='Sliders_3' class="Filter_page" style="width: 100%; column-gap: 20px;display: flex;transition: .5s;flex-direction: row;flex-wrap: wrap; justify-content: center;">
+                                <!-- Рекомендации от просмотренных фильмов -->
+                                {%for el in data['films']%}
+                                <div class="shop-item" title="{{el['nameRu']}}" style="height: auto;">
+                                    <a class="shop-item__image" href="/infofilm/{{el['filmId']}}">
+                                        <img class="loaded" style="-webkit-mask:none; width:100%; max-height: 370px;" src="{{el['posterUrl']}}" alt="{{el['nameRu']}}">
+                                        <div class="b-card__img-ratinglabels">
+                                            <div class="b-ratinglabel" style="cursor: pointer;">
+
+                                                <div class="b-ratinglabel__value">{{el['rating']}}</div>
+                                                <div class="b-ratinglabel__title">IMDb</div>
+                                            </div>
+                                        </div>
+
+                                    </a>
+                                    <a class="shop-item__name Name_texts" href="/infofilm/{{el['filmId']}}">{{el['nameRu']}}</a>
+                                    <div class="shop-item__price">
+                                        <div class="shop-item__price-discount">{{el['year']}}</div>
+                                    </div>
+                                    <span class="btn btn--primary js-addToCart" onclick="window.open(&quot;/infofilm/{{el['filmId']}})" name="bqwe" id="open_window_film" film_id="{{el['filmId']}}" data-item-id="{{el['filmId']}}">Перейти</span>
+                                </div>
+                                {%endfor%}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

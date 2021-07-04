@@ -1,0 +1,14 @@
+#film_block {
+    width: 800px;
+    height: 370px;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+    position: relative;
+}
+
+#Film-iframe {
+    width: 100%;
+    height: 100%;
+}

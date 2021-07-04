@@ -1,0 +1,74 @@
+:root {
+    --color-title-film: gra
+}
+
+.today-in-cinema__carousel {
+    margin: -5px -5px 0 -10px;
+}
+
+.carousel {
+    position: relative;
+}
+
+.scroll-barqwb415nmv69d2g7neae {
+    overflow: hidden;
+}
+
+.scroll-barqwb415nmv69d2g7neae__scroll {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.carousel_desktop .carousel__inner {
+    padding-top: 5px;
+}
+
+.carousel__inner {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    padding-top: 20px;
+}
+
+.today-in-cinema__carousel-item {
+    padding: 0 10px;
+    margin-right: 0;
+    width: auto;
+    cursor: default;
+}
+
+.carousel__item {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    position: relative;
+    width: 100px;
+    margin-right: 12px;
+}
+
+.today-in-cinema__carousel-item {
+    padding: 0 10px;
+    margin-right: 0;
+    width: auto;
+    cursor: default;
+}
+
+.carousel__item {
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    position: relative;
+    cursor: pointer;
+    position: relative;
+    width: 100px;
+    margin-right: 12px;
+}
