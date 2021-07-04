@@ -4,10 +4,12 @@ from service import JWT, data_base, theards, user_server_data, API_Yandex
 
 from settings import env
 
+
 @app.route('/')
 def index():
     access = True
     return render_template('main.html', access = access)
+
 
 
 @app.route('/film')
@@ -41,6 +43,7 @@ def film_new():
     # else
     res = render_template('watch_films.html',test=False, Main_poster=Main_poster, genres=genres, Top_now=Top_now, Top_wating=Top_wating, Top_clasic=Top_clasic)
     return res
+
 
 
 @app.route('/datafilm/<id>')

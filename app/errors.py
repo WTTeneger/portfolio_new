@@ -8,6 +8,7 @@ def page_not_found(e):
     # return render_template("errors.html") #('404.html')
 
 
+
 @app.errorhandler(400)
 def page_not_found(e):
     return {
@@ -15,12 +16,15 @@ def page_not_found(e):
         'data': str(e)
         },e.code #('404.html')
 
+
+
 @app.errorhandler(405)
 def page_not_found(e):
     return {
         'errors':'Вы уже получили данные',
         'data': str(e)
         }, e.code #('404.html')
+
 
 
 @app.errorhandler(500)

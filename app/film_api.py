@@ -26,6 +26,7 @@ def search_film():
     return(qe)
     
     
+    
 @app.route('/FilmAPI/film/<apiK>&<Fname>')
 def get_films(apiK, Fname):
     if(apiK):
@@ -129,6 +130,7 @@ def film_filters():
         return(data)
 
 
+
 @app.route('/FilmAPI/v2.1/get_in_text', methods=["POST"])
 def get_in_text():
     qe = ''
@@ -144,6 +146,7 @@ def get_in_text():
     return(qe)
 
 
+
 @app.route('/catalogFilter')
 def catalogFilter():
     filters =request.args.get('ProductFilter')
@@ -151,6 +154,8 @@ def catalogFilter():
     genres = API_Yandex.API_Cinema.get_filters(None)
     name = 'Жанры'
     return render_template('catalogFilter.html', genres = genres, name = name)
+
+
 
 @app.route('/film/torrentcatalog/<fid>')
 def torrentcatalog(fid):
