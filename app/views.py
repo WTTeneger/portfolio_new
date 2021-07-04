@@ -94,6 +94,7 @@ def info_film(id):
         photo_data['frames'][0]
     except:
         photo_data = False
+    print(data)
     return render_template('main_info.html', test=test, data=data, photo_data=photo_data, trailer_data = trailer_data, sequels_data=sequels_data, similars_data=similars_data, genres=genres, film_id = f)
 
 

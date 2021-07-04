@@ -35,11 +35,17 @@
                                 {%else%}
                                 <img class="js-img-bgcolro" src="{{data['data']['posterUrl']}}" alt="">
                                 <div class="b-card__img-ratinglabels">
+                                    {% if data['rating']['ratingImdb'] != 0 %}
                                     <div class="b-ratinglabel" style="cursor: pointer;" onclick='window.open(`https://www.imdb.com/title/{{data["externalId"]["imdbId"]}}`);'>
-
                                         <div class="b-ratinglabel__value">{{data['rating']['ratingImdb']}}</div>
                                         <div class="b-ratinglabel__title">IMDb</div>
                                     </div>
+                                    {%else%}
+                                    <div class="b-ratinglabel" style="">
+                                        <div class="b-ratinglabel__value">{{data['rating']['rating']}}</div>
+                                        <div class="b-ratinglabel__title">rating</div>
+                                    </div>
+                                    {%endif%}
                                 </div>
 
                                 {%endif%}
@@ -155,7 +161,8 @@
                                     <div class="b-card__table-title">Жанр</div>
                                     <div class="b-card__table-value">
                                         {%for el in data['data']['genres']%}
-                                        <a class="" href="/find?genres{{el['genre']}}">{{el['genre']}}</a>, {%endfor%}
+
+                                        <a class="" href="/filters?ProductFilter={{el['genre']}}&page=1">{{el['genre']}}</a>, {%endfor%}
                                     </div>
                                 </div>
                                 <!-- <div class="b-card__table-item">

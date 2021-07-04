@@ -36,24 +36,46 @@ var endB =
                         div.className = 'shop-item'
                         div.title = el['nameRu']
                         div.style = "height: auto"
-                        div.innerHTML += `
-                            <a class="shop-item__image" href="/infofilm/${el['filmId']}">
-                                <img class="loaded" style="-webkit-mask:none; width:100%; max-height: 370px;" src="${el['posterUrl']}" alt="${el['nameRu']}">
-                                <div class="b-card__img-ratinglabels">
-                                    <div class="b-ratinglabel" style="cursor: pointer;">
+                        if (el['rating'].indexOf("%") >= 0) {
+                            div.innerHTML += `
+                                <a class="shop-item__image" href="/infofilm/${el['filmId']}">
+                                    <img class="loaded" style="-webkit-mask:none; width:100%; max-height: 370px;" src="${el['posterUrl']}" alt="${el['nameRu']}">
+                                    <div class="b-card__img-ratinglabels">
+                                        <div class="b-ratinglabel" style="cursor: pointer;">
 
-                                        <div class="b-ratinglabel__value">${el['rating']}</div>
-                                        <div class="b-ratinglabel__title">IMDb</div>
+                                            <div class="b-ratinglabel__value">${el['rating']}</div>
+                                            <div class="b-ratinglabel__title">Ожидают</div>
+                                        </div>
                                     </div>
-                                </div>
 
-                            </a>
-                            <a class="shop-item__name Name_texts" href="/infofilm/${el['filmId']}">${el['nameRu']}</a>
-                            <div class="shop-item__price">
-                                <div class="shop-item__price-discount">${el['year']}</div>
-                            </div>
-                            <span class="btn btn--primary js-addToCart" onclick="window.open(&quot;/infofilm/${el['filmId']})" name="bqwe" id="open_window_film" film_id="${el['filmId']}" data-item-id="${el['filmId']}">Перейти</span>
+                                </a>
+                                <a class="shop-item__name Name_texts" href="/infofilm/${el['filmId']}">${el['nameRu']}</a>
+                                <div class="shop-item__price">
+                                    <div class="shop-item__price-discount">${el['year']}</div>
+                                </div>
+                                <span class="btn btn--primary js-addToCart" onclick="window.open(&quot;/infofilm/${el['filmId']})" name="bqwe" id="open_window_film" film_id="${el['filmId']}" data-item-id="${el['filmId']}">Перейти</span>
                         `
+                        } else {
+                            div.innerHTML += `
+                                <a class="shop-item__image" href="/infofilm/${el['filmId']}">
+                                    <img class="loaded" style="-webkit-mask:none; width:100%; max-height: 370px;" src="${el['posterUrl']}" alt="${el['nameRu']}">
+                                    <div class="b-card__img-ratinglabels">
+                                        <div class="b-ratinglabel" style="cursor: pointer;">
+
+                                            <div class="b-ratinglabel__value">${el['rating']}</div>
+                                            <div class="b-ratinglabel__title">rating</div>
+                                        </div>
+                                    </div>
+
+                                </a>
+                                <a class="shop-item__name Name_texts" href="/infofilm/${el['filmId']}">${el['nameRu']}</a>
+                                <div class="shop-item__price">
+                                    <div class="shop-item__price-discount">${el['year']}</div>
+                                </div>
+                                <span class="btn btn--primary js-addToCart" onclick="window.open(&quot;/infofilm/${el['filmId']})" name="bqwe" id="open_window_film" film_id="${el['filmId']}" data-item-id="${el['filmId']}">Перейти</span>
+                            `
+                        }
+
                         document.getElementsByName('Sliders_3')[0].appendChild(div);
 
                     }

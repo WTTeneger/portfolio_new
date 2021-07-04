@@ -108,12 +108,21 @@ def film_filters():
     
     else:
         for el in genres['genres']:
+            
             # print(int(el['id']) , int(filters), int(el['id']) == int(filters))
-            if int(el['id']) == int(filters):
-                name = el['genre']
-                break
-        # print(filters, name)
-        data = API_Yandex.API_Cinema.get_film_in_filters(None, genre=[filters], page=page)
+            # print(el)
+            try:
+                int(filters)
+                if int(el['id']) == int(filters):
+                    name = el['genre']
+                    idqq = el['id']
+                    break
+            except:
+                if(filters == el['genre']):
+                    name = el['genre']
+                    idqq = el['id']
+        # print(idqq, name)
+        data = API_Yandex.API_Cinema.get_film_in_filters(None, genre=[idqq], page=page)
     if(request.method =='GET'):
         return render_template('FILTER_LIST.html', data = data, genres = genres, name = name, filters=filters)
     else:
