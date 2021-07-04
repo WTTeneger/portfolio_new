@@ -80,7 +80,6 @@ def info_film(id):
         
     except:
         return redirect('/')
-    '. '
     co = 0
     try:
         for el in trailer_data['trailers']:
