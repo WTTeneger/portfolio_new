@@ -4,11 +4,7 @@
 <script src="/static/js/clickerPointer.js"></script>
 
 <title>AA · {{data['data']['nameRu']}}</title>
-<link rel="stylesheet" type="text/css" href="/static/CSS/auth.css">
-<!--  -->
-{% endblock %} {% block body %}
-
-
+<link rel="stylesheet" type="text/css" href="/static/CSS/auth.css"> {% endblock %} {% block body %}
 <div>
     <div class="b-content__layout">
         <div class="b-background js-bg-change" style="
@@ -17,7 +13,6 @@
                                         "></div>
         <div class="b-content__container">
             <div class="b-card">
-
                 <div class="b-content__wrapper">
                     <div class="b-card__row">
                         <div class="b-card__col b-card__col--small b-card__col--text-center">
@@ -164,10 +159,6 @@
                                         <a class="" href="/filters?ProductFilter={{el['genre']}}&page=1">{{el['genre']}}</a>, {%endfor%}
                                     </div>
                                 </div>
-                                <!-- <div class="b-card__table-item">
-                                        <div class="b-card__table-title">Платформа</div>
-                                        <div class="b-card__table-value"> <span>PC</span></div>
-                                    </div> -->
                                 <div class="b-card__table-item">
                                     <div class="b-card__table-title">Дата выхода</div>
                                     <div class="b-card__table-value"> <span>{{data['data']['premiereWorld']}}</span></div>
@@ -214,17 +205,6 @@
                                         <div class="js-slider-tab slick-initialized slick-slider">
                                             <div class="slick-list draggable qqq_Www">
                                                 <div class="slick-track animation-slick-track" style="opacity: 1; width: max-content; transform: translate3d(0px, 0px, 0px);margin:0;">
-
-                                                    <!-- <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 90vw;">
-                                                            <div>
-                                                                <div class="b-card__slider-item" style="width: 100%; display: inline-block;">
-                                                                    <div class="b-card__slider-image">
-                                                                        <a class="js-fb" href="https://static.gabestore.ru/screen_product/to-oyQ_hu2ntRCEMy24O97br-RiEVZ_g.jpg" data-fancybox="gallery" tabindex="0"> <img src="https://static.gabestore.ru/screen_product/to-oyQ_hu2ntRCEMy24O97br-RiEVZ_g.jpg"></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
-
                                                     {%for el in photo_data['frames']%}
                                                     <!--  -->
                                                     {% if 10 > loop.index %}
@@ -288,8 +268,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- https://img.youtube.com/vi/r5c0-TFP18g/maxresdefault.jpg -->
-                                                    <!-- ttps://www.youtube.com/watch?v=r5c0-TFP18g -->
                                                     {%endif%}{%endif%} {%endfor%}
                                                 </div>
                                                 {%endif%}
@@ -370,7 +348,6 @@
                                                                     </a>
                                                                     <a class="shop-item__name" href="/infofilm/{{el['filmId']}}" tabindex="-1">{{el['nameRu']}}</a>
                                                                     <div class="shop-item__price">
-                                                                        <!-- <div class="shop-item__name">{{el['nameEn']}}</div> -->
                                                                         <div class="shop-item__price-discount">{{el['relationType']}}</div>
                                                                     </div>
                                                                     <a class="btn btn--primary js-addToCart " href="/infofilm/{{el['filmId']}}" data-item-id="2398" tabindex="-1">К&nbsp;фильму</a> </div>
@@ -472,5 +449,4 @@
     roll('left', 3, 'asd')
     roll('left', 4, 'asd')
 </script>
-<!-- <script script src="/static/js/aFilms.js"></script> -->
 {% endblock %}
