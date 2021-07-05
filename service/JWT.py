@@ -4,9 +4,10 @@ import base64
 import time
 
 from settings import env
-
-
-
+import datetime
+import hashlib
+import uuid
+from service import data_base
 class tokinService():
     def __init__(self):
         """ Конструктор 
@@ -17,6 +18,8 @@ class tokinService():
     def generateTokins(self, payload) -> json:
         """
         Генерит пару ключей
+        ~~~~~
+
 
         Returns:
             json: [description]
@@ -46,4 +49,54 @@ class tokinService():
         else:
             q = jwt.decode(JWT_text, env.JWT_REFRESH_SECRET, algorithms=["HS256"])
         return(q)
-        
+
+    
+
+    def checkTokins(self, tokinDecode:json):
+        types = ''
+        tplas = 0
+        qr_otv = ' '
+        if('m' in tokinDecode['payload']['expiresIn']):
+            types='access'
+            tplas = int(tokinDecode['payload']['expiresIn'].replace('m',''))
+            mng = 60
+            tplas *= mng
+
+        elif('d' in tokinDecode['payload']['expiresIn']):
+            types='refresh'
+            tplas = int(tokinDecode['payload']['expiresIn'].replace('d',''))
+            mng = 60*60*24
+            tplas *= mng
+
+ 
+        print(((tokinDecode['payload']['time_create'] + tplas) - time.time()))
+        if(((tokinDecode['payload']['time_create'] + tplas) - time.time())>0):
+            return(True,'live')
+        else:
+            return(False, 'timeEnd')
+
+
+
+
+
+
+
+
+class password_cache():
+    """Работа с кэшем паролей
+    ~~~
+    """
+    def __init__(self):
+        """ Конструктор 
+        """
+
+    def hash_password(self, password):
+        # uuid используется для генерации случайного числа
+        salt = uuid.uuid4().hex
+        return hashlib.sha256(salt.encode() + password.encode()).hexdigest() + ':' + salt
+
+
+    def check_password(self, hashed_password, user_password):
+        password, salt = hashed_password.split(':')
+        return password == hashlib.sha256(salt.encode() + user_password.encode()).hexdigest()
+

@@ -1,0 +1,75 @@
+{% extends 'header_base.html' %} {% block title %}
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/clickerPointer.js"></script>
+<script src="/static/js/auth.js"></script>
+<title>AA · вход</title>
+<link rel="stylesheet" href="/static/css/style_auth.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="/static/css/alert.css" media="screen" type="text/css" /> {% endblock %} {% block body %}
+
+<div class="alert warning" style="display: block; opacity: 0;">
+    <span class="closebtn" onclick="cl()">×</span>
+    <strong>Warning!</strong> Indicates a warning that might need attention.
+</div>
+
+
+<script>
+    function cl() {
+        console.log('asd');
+        document.getElementsByClassName('alert')[0].style.opacity = 0;
+    }
+</script>
+
+<div class="main_div_auth" style="transform: translateX(0%);">
+    <div style="width: 100%;">
+        <div id="login">
+            <div>
+                <p id='form_sended_1_text' class="text_error">Не верные данный</p>
+                <p id='form_sended_1_con' class="text_error">Аккаунт успешно создан, войдити</p>
+                <form action="javascript:send_form(form_sended_1);" method="POST" id='form_sended_1'>
+                    <fieldset class="clearfix">
+                        <p><span class="fontawesome-user"></span><input placeholder="Логин" id='lg_1' type="text" onBlur="" onFocus="" required></p>
+                        <!-- JS because of IE support; better: placeholder="Username" -->
+                        <p><span class="fontawesome-lock"></span><input placeholder="Пароль" id='lg_2' type="password" onBlur="" onFocus="" required></p>
+                        <!-- JS because of IE support; better: placeholder="Password" -->
+                        <p><input type="submit" value="ВОЙТИ"></p>
+                    </fieldset>
+                </form>
+                <p>Нет аккаунта? &nbsp;&nbsp;<a href="#" onclick="trans('reg_key');">Регистрация</a><span class="fontawesome-arrow-right"></span></p>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%;">
+        <div id="login">
+            <div>
+                <p id='form_sended_2_text' class="text_error">Пользователь с такими данными есть</p>
+                <form action="javascript:send_form(form_sended_2);" method="POST" id='form_sended_2'>
+                    <fieldset class="clearfix">
+                        <p><span class="fontawesome-user"></span><input type="text" placeholder="Логин" onBlur="" onFocus="" required></p>
+                        <!-- JS because of IE support; better: placeholder="Username" -->
+                        <p><span class="fontawesome-envelope"></span><input type="text" placeholder="email" onBlur="" onFocus="" required></p>
+                        <!-- JS because of IE support; better: placeholder="email" -->
+                        <p><span class="fontawesome-lock"></span><input type="password" placeholder="Пароль" onBlur="" onFocus="" required></p>
+                        <!-- JS because of IE support; better: placeholder="Password" -->
+                        <p><input type="submit" value="РЕГИСТРАЦИЯ"></p>
+                    </fieldset>
+                </form>
+                <p>Есть аккаунт? &nbsp;&nbsp;<span class="fontawesome-arrow-left"></span><a onclick="trans('auth_key');" href="#">Авторизация</a></p>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%;">
+        <div id="login" id='code'>
+            <div>
+                <form action="javascript:send_form(form_sended_3);" method="POST" id='form_sended_3'>
+                    <fieldset class="clearfix clearfixqq" style="display: flex; column-gap: 3px;">
+                        <input maxlength=1 type="number" id='num1' style="height: 100px; text-align: center; font-size: 40px;" oninput="document.getElementsByClassName('clearfixqq')[0].children[1].focus()" placeholder="" onBlur="" onFocus="" required>
+                        <input maxlength=1 type="number" id='num2' style="height: 100px; text-align: center; font-size: 40px;" oninput="document.getElementsByClassName('clearfixqq')[0].children[2].focus()" placeholder="" onBlur="" onFocus="" required>
+                        <input maxlength=1 type="number" id='num3' style="height: 100px; text-align: center; font-size: 40px;" oninput="document.getElementsByClassName('1qq')[0].focus()" placeholder="" onBlur="" onFocus="" required>
+                    </fieldset>
+                    <p><input class="1qq" type="submit" value="Проверить"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%endblock%}

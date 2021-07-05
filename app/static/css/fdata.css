@@ -16274,7 +16274,8 @@ li.b-menu__accordeon-item:hover a {
 
 @media screen and (min-width: 1025px) {
     .oflow_aw {
-        overflow: hidden;
+        /* overflow: hidden; */
+        overflow: auto;
     }
     .b-card__slider .slick-list {
         overflow: hidden;

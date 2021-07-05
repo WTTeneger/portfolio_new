@@ -100,3 +100,10 @@ def info_film(id):
     return render_template('main_info.html', test=test, data=data, photo_data=photo_data, trailer_data = trailer_data, sequels_data=sequels_data, similars_data=similars_data, genres=genres, film_id = f)
 
 
+@app.route('/film/auth')
+def film_auth():
+    
+    genres = API_Yandex.API_Cinema.get_filters(None)
+    return render_template('auth.html', genres=genres)
+
+
