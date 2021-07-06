@@ -177,7 +177,7 @@ def api_refresh_tokin_user():
             return(res, 400)
     else:
         res = make_response({'errors':'Не авторизирован'})
-        res.set_cookie('refreshToken', 0, 0)
+        res.set_cookie('refreshToken', 's', 0)
         return(res, 400)
 
 

@@ -111,6 +111,7 @@ class API_Cinema():
 
     def get_film_in_filters(self, counry=[], genre=[], order = 'RATING', types='ALL', ratingFrom=0, ratingTo=10, yearFrom=1888, yearTo=2021, page=1):
         """Get films in filter
+        ~~~
         
         Получаем список фильмов по фиьтру
 
@@ -135,14 +136,9 @@ class API_Cinema():
         for el in counry:
             urls += f'country={el}&'
         urls += f'order={order}&type={types}&ratingFrom={ratingFrom}&ratingTo={ratingTo}&yearFrom={yearFrom}&yearTo={yearTo}&page={page}'
-        # urls +=  
-
 
         print(urls)
-        #https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?genre=1&genre=7&genre=5&genre=0&order=RATING&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1888&yearTo=2021&page=1
-        #https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?genre=1750&order=RATING&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1888&yearTo=2020&page=1
         p = {}
-
 
 
         request = requests.get(urls, headers=h, params=p)
