@@ -1,0 +1,27 @@
+{% extends 'header_base.html' %} {% block title %}
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/clickerPointer.js"></script>
+<script src="/static/js/auth.js"></script>
+<title>AA · вход</title>
+<link rel="stylesheet" href="/static/css/style_auth.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="/static/css/alert.css" media="screen" type="text/css" /> {% endblock %} {% block body %}
+
+<div class="alert warning" style="display: block; opacity: 0;">
+    <span class="closebtn" onclick="cl()">×</span>
+    <strong>Warning!</strong> Indicates a warning that might need attention.
+</div>
+
+
+<script>
+    function cl() {
+        console.log('asd');
+        document.getElementsByClassName('alert')[0].style.opacity = 0;
+    }
+</script>
+
+<div style='height: 88vh; text-align: center;'>
+    <H1>ЛИЧНЫЙ КАБИНЕТ</H1><br><br>
+    <a href="/film">Вернуться</a>
+</div>
+
+{%endblock%}

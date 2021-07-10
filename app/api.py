@@ -1,6 +1,6 @@
 from app import app
 
-from service import JWT, data_base, theards, user_server_data
+from service import JWT, data_base, theards, user_server_data, API_Yandex
 from app import *
 
 from settings import env
@@ -16,7 +16,7 @@ import random, datetime
 
 
 
-@app.route('/api/v0.1/register', methods=['POST', "GET"])
+@application.route('/api/v0.1/register', methods=['POST', "GET"])
 def api_register_user():
     req = request.data.decode()
     # print('v,',req)
@@ -24,6 +24,7 @@ def api_register_user():
         f = json.loads(req)
         print(f)
         if('data' in f and ('login' and 'password' and 'email' in f['data'])):
+            print(f""" SELECT id FROM users WHERE `e-mail` = "{f['data']['email']}" or `login` = "{f['data']['login']}" """)
             result = data_base.DB.GET(f""" SELECT id FROM users WHERE `e-mail` = "{f['data']['email']}" or `login` = "{f['data']['login']}" """)
             print(result)
             if(len(result) > 0):
@@ -32,14 +33,14 @@ def api_register_user():
                 password_hash = JWT.password_cache.hash_password(None, f['data']['password'])
                 cod_ = random.randint(100, 999)
                 print('код', cod_)
-                data_base.DB.POST(f"""INSERT INTO users VALUES(Null, '{f['data']['login']}', '{password_hash}', '{f['data']['email']}', '{cod_}', 0)""")
+                data_base.DB.POST(f"""INSERT INTO users VALUES(Null, '{f['data']['login']}', '{password_hash}', '{f['data']['email']}', '{cod_}', 0, 0)""")
                 return({'text':'Аккаунт создан','lg':f['data']['login']}, 200)
         else:
             abort(400)
     else:
         abort(404)
 
-@app.route('/api/v0.1/verificate', methods=['POST', "GET"])
+@application.route('/api/v0.1/verificate', methods=['POST', "GET"])
 def api_verificate_user():
     req = request.data.decode()
     if(req != ''):
@@ -57,7 +58,7 @@ def api_verificate_user():
     else:
         abort(404)
 
-@app.route('/api/v0.1/login', methods=['POST', "GET"])
+@application.route('/api/v0.1/login', methods=['POST', "GET"])
 def api_login_user():
     qr_next = False
     if request.cookies.get('refreshToken'):
@@ -116,8 +117,7 @@ def api_login_user():
             abort(404)
 
 
-
-@app.route('/api/v0.1/replace_pass', methods=['POST', "GET"])
+@application.route('/api/v0.1/replace_pass', methods=['POST', "GET"])
 def api_replace_password_user():
     req = request.data.decode()
     
@@ -147,8 +147,7 @@ def api_replace_password_user():
     return(req)
 
 
-
-@app.route('/api/v0.1/refresh_tokin', methods=['POST', "GET"])
+@application.route('/api/v0.1/refresh_tokin', methods=['POST', "GET"])
 def api_refresh_tokin_user():
     if(request.cookies.get('refreshToken')):
         otv = JWT.tokinService.decodeTokins(None, type_sc="REFRESH", JWT_text=request.cookies.get('refreshToken'))
@@ -181,31 +180,75 @@ def api_refresh_tokin_user():
         return(res, 400)
 
 
-
-
-
-
-@app.route('/api/v0.1/users', methods=['POST', "GET"])
-def api_get_test():  
-    f = json.loads(request.data.decode())
-    if('refreshTokin' in f):
-        jwts = tokinService.decodeTokins('REFRESH', f['refreshTokin'])
-    elif('accessTokin' in f):
-        jwts = tokinService.decodeTokins('ACCESS', f['accessTokin'])
+@application.route('/api/v0.1/post_new_history', methods=['POST', "GET"])
+def api_post_new_history():  
+    if request.cookies.get('refreshToken'):
+        req = request.data.decode()
+        if(req != ''):
+            f = json.loads(req)
+            if('data' in f and ('access_tokin','last_data' in f['data']) and ('type', 'id_film', 'status' in f['data']['last_data'])):
+                print('Всё есть')
+                otv = JWT.tokinService.decodeTokins(None, type_sc="ACCESS", JWT_text=f['data']['access_tokin'])
+                print(otv)
+                status_tokin, types_status = JWT.tokinService.checkTokins(None, otv)
+                if(status_tokin):
+                    print(f['data']['last_data']['type'] )
+                    if(f['data']['last_data']['type'] == 'watch_page_film'):
+                        # print(otv['payload']['data']['id_user'])
+                        var = data_base.DB.GET(f"""SELECT * FROM likeng WHERE from_user  = {otv['payload']['data']['id_user']} and id_film = {f['data']['last_data']['id_film']} """)
+                        # print(var)
+                        if(len(var)>0):
+                            data_base.DB.POST(f"""DELETE FROM likeng WHERE from_user = {otv['payload']['data']['id_user']} and id_film = {f['data']['last_data']['id_film']} """)
+                            print('Удалил')
+                        else:
+                            zapr = f"""INSERT INTO likeng VALUES(null, {otv['payload']['data']['id_user']}, {f['data']['last_data']['id_film']}, '{datetime.datetime.now()}')"""
+                            data_base.DB.POST(zapr)
+                            print('Добавил')
+                    return(f['data']['last_data'])
+                else:
+                    return({'errors':'Код старый'}, 402)
+            else:
+                abort(400)
+        else:
+            abort(400)
     else:
-        abort(400)
-    return(jwts)
+        res = make_response({'errors':'Нет куков'})
+        res.set_cookie('refreshToken', 's', 0)
+        return(res, 400)
+
+
+@application.route('/api/v0.1/get_likend', methods=['POST', "GET"])
+def api_get_likend():  
+    if request.cookies.get('refreshToken'):
+        req = request.data.decode()
+        # print(req)
+        if(req != ''):
+            f = json.loads(req)
+            if('data' in f and ('access_tokin')):
+                print(f)
+                otv = JWT.tokinService.decodeTokins(None, type_sc="ACCESS", JWT_text=f['data']['access_tokin'])
+                print(otv)
+                status_tokin, types_status = JWT.tokinService.checkTokins(None, otv)
+                if(status_tokin):
+                    if('id_user' in f['data'] and f['data']['id_user'] != otv['payload']['data']['id_user']):
+                        
+                        otv = data_base.DB.GET(f"SELECT * FROM `likeng`, `users` WHERE from_user = {f['data']['id_user']} and (users.id = {f['data']['id_user']} and users.sharing = 0)")
+                    else:
+                        otv = data_base.DB.GET(f"SELECT * FROM `likeng` WHERE from_user = {otv['payload']['data']['id_user']}")
+                    data = {'films':[]}
+                    for el in otv:
+                        data['films'].append(API_Yandex.API_Cinema.get_data_film(None, el[2], ''))
+                    return(data, 200)
+                else:
+                    return({'errors':'Код старый'}, 402)
+            else:
+                abort(400)
+        else:
+            abort(400)
+    else:
+        res = make_response({'errors':'Нет куков'})
+        res.set_cookie('refreshToken', 's', 0)
+        return(res, 400)
 
 
 
-
-
-
-
-
-
-#Авторизация, регистрация
-@app.route('/api/v0.1/users', methods=['POST', "GET"])
-def api_auths():
-    print('as')
-    return('as')  

@@ -2574,7 +2574,8 @@ html:not(.is-mac) body::-webkit-scrollbar-thumb {
 .slick-list {
     overflow: hidden;
     margin: 0;
-    padding: 0
+    padding: 0;
+    width: 100%;
 }
 
 .b-header__search form .search-btn:focus,
@@ -2710,10 +2711,11 @@ b-menu__accordeon-item .b-header__logo a {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: center;
-    width: 100%;
+    width: 100vw;
     padding: 36px var(--p);
+    /* padding: 36px var(--p);
     margin: 0 auto;
-    position: relative
+    position: relative */
 }
 
 .b-header__container {
@@ -15025,7 +15027,9 @@ body.fixed:after {
         width: calc(100% + (var(--p)*2));
         margin: 0 calc(var(--p)*-1);
         padding: 0 var(--p);
-        overflow: auto
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
     }
     .b-card__slideritem-button {
         white-space: nowrap

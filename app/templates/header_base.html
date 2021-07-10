@@ -18,7 +18,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/589f606710.js" crossorigin="anonymous"></script>
-    <!--  -->
+    <script src="/static/js/jwt.js"></script>
     {% block title %} {% endblock %}
 </head>
 
@@ -111,10 +111,13 @@
                         <div class="b-menu__close js-menu-close" id='closeButtons' name='closeButtons' style="cursor: pointer;"></div>
                         <div class="b-menu__wrapper js-accordeon-container" data-mobile="true">
                             <ul class="b-menu__list b-menu__list--main b-menu__col">
+                                <li class="b-menu__list-item"> <a href="/film">Главная</a></li>
                                 <li class="b-menu__list-item"> <a href="/filters?ProductFilter=top_main&page=1">ТОП 250</a></li>
                                 <li class="b-menu__list-item"> <a href="/filters?ProductFilter=top_now&page=1">лидеры сейчас</a></li>
                                 <!-- <li class="b-menu__list-item"> <a href="/nn">новинки</a></li> -->
                                 <li class="b-menu__list-item"> <a href="/filters?ProductFilter=top_await&page=1">ожидает весь мир</a></li>
+
+                                <li class="b-menu__list-item"> <a href="/film/auth">Аккаунт</a></li>
                                 <!-- <li class="b-menu__list-item"> <a href="/collections">подборки </a></li> -->
                             </ul>
                             <div class="b-menu__accordeon b-menu__col" style="width: 100%;">
@@ -124,7 +127,7 @@
                                     <li class="b-menu__accordeon-item">
                                         <a href="/catalog?ProductFilter%5Bgenre%5D%5B%5D=1">asd</a>
                                     </li>
-                                    {%else%} {%for el in range(18)%} {%if loop.index > 12%}
+                                    {%else%} {%for el in range(18)%} {%if loop.index > 10%}
                                     <li class="b-menu__accordeon-item item_in_pc"> <a href="/filters?ProductFilter={{genres['genres'][el]['id']}}&page=1">{{genres['genres'][el]['genre']}}</a></li>
                                     {%else%}
                                     <li class="b-menu__accordeon-item"> <a href="/filters?ProductFilter={{genres['genres'][el]['id']}}&page=1">{{genres['genres'][el]['genre']}}</a></li>
@@ -132,7 +135,7 @@
                                     <!-- <li class="b-menu__accordeon-item"> <a href="/catalog?ProductFilter%5Bgenre%5D%5B%5D=22">жанр</a></li> -->
 
                                 </ul>
-                                <div class="b-menu__list b-menu__list-sub" style="margin-top: 48px; text-align: center;">
+                                <div class="b-menu__list b-menu__list-sub" style="margin-top: 0px; text-align: center;">
                                     <div class="b-menu__list-item"> <a href="/catalogFilter">Все жанры — {{genres['genres']|length}}</a></div>
                                 </div>
                             </div>
@@ -148,8 +151,8 @@
             </div>
         </div>
     </header>
-    <!--  -->
     {% block body%}{% endblock %}
+
 </body>
 
 </html>

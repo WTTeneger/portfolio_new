@@ -52,7 +52,7 @@ class tokinService():
 
     
 
-    def checkTokins(self, tokinDecode:json):
+    def checkTokins(self, tokinDecode:json, tokin = ''):
         types = ''
         tplas = 0
         qr_otv = ' '
@@ -61,17 +61,27 @@ class tokinService():
             tplas = int(tokinDecode['payload']['expiresIn'].replace('m',''))
             mng = 60
             tplas *= mng
+            status = 'ACCESS'
 
         elif('d' in tokinDecode['payload']['expiresIn']):
             types='refresh'
             tplas = int(tokinDecode['payload']['expiresIn'].replace('d',''))
             mng = 60*60*24
             tplas *= mng
+            status = 'REFRESH'
 
  
         print(((tokinDecode['payload']['time_create'] + tplas) - time.time()))
+        # print(status)
         if(((tokinDecode['payload']['time_create'] + tplas) - time.time())>0):
+            if(status == 'REFRESH'):
+                # print(status)
+                br = data_base.DB.GET(F'SELECT id_user FROM auth_data WHERE refreshToken = "{tokin}"')
+                # print(br)
+                if(len(br)==0):
+                    return(False, 'NotFound')
             return(True,'live')
+
         else:
             return(False, 'timeEnd')
 

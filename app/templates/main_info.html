@@ -49,7 +49,11 @@
                         <div class="b-card__col b-card__col--large">
                             <div class="b-card__head">
                                 <h1 class="b-card__title">{{data['data']['nameRu']}}</h1>
-                                <div class="b-card__favorite js-modal-open" data-item-id="3144" data-modal="login"></div>
+                                {% if like%}
+                                <div id='botton_like' name='botton_like' class="b-card__favorite js-modal-open" style="background-position: 22.8% 0%;" data-item-id="{{data['data']['filmId']}}" data-modal="login"></div>
+                                {%else%}
+                                <div id='botton_like' name='botton_like' class="b-card__favorite js-modal-open" style="background-position: 0% 16.6%;" data-item-id="{{data['data']['filmId']}}" data-modal="login"></div>
+                                {%endif%}
                             </div>
                             <div class="b-card__body">
                                 <ul class="b-card__available">
@@ -100,9 +104,9 @@
                                     </div>
 
                                     <div class="b-card__subinfo-item">
-                                        <div class="b-card__subinfo-head">DATA</div>
+                                        <div class="b-card__subinfo-head">Время</div>
                                         <div class="b-card__subinfo-body">
-                                            <a class="">VALUE</a>
+                                            <a class="">{{data['data']['filmLength']}}</a>
                                         </div>
                                     </div>
                                     <div class="b-card__subinfo-item">
@@ -131,15 +135,15 @@
                                     </div>
 
                                     <div class="b-card__subinfo-item">
-                                        <div class="b-card__subinfo-head">DATA</div>
+                                        <div class="b-card__subinfo-head">Время</div>
                                         <div class="b-card__subinfo-body">
-                                            <a class="">VALUE</a>
+                                            <a class="">{{data['data']['filmLength']}}</a>
                                         </div>
                                     </div>
                                     <div class="b-card__subinfo-item">
-                                        <div class="b-card__subinfo-head">DATA</div>
+                                        <div class="b-card__subinfo-head">Год</div>
                                         <div class="b-card__subinfo-body">
-                                            <a class="">VALUE</a>
+                                            <a class="">{{data['data']['year']}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -171,9 +175,8 @@
                                     </div>
                                 </div>
                                 <div class="b-card__table-item">
-                                    <div class="b-card__table-title">ДАТА</div>
-                                    <div class="b-card__table-value">
-                                        <a href="#">VALUE</a> </div>
+                                    <div class="b-card__table-title">рейтинг возврастного ограничения</div>
+                                    <div class="b-card__table-value"> <span>{{data['data']['ratingAgeLimits']}}</span></div>
                                 </div>
                                 <div class="b-card__table-item">
                                     <div class="b-card__table-title">ДАТА</div>
@@ -299,7 +302,7 @@
                                             <div class="slick-list draggable">
                                                 <div class="slick-track animation-slick-track" style="opacity: 1; width: max-content; transform: translate3d(0px, 0px, 0px);">
                                                     {%for el in similars_data['items']%}
-                                                    <div class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 12rem;" tabindex="-1">
+                                                    <div class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 14rem;" tabindex="-1">
                                                         <div>
                                                             <div class="b-card__slideritem-item" style="width: 100%; display: inline-block;">
                                                                 <div class="shop-item" style="height: 20rem;">
@@ -339,7 +342,7 @@
                                                     {%if sequels_data !=false%}
                                                     <!--  -->
                                                     {%for el in sequels_data%}
-                                                    <div class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 12rem;" tabindex="-1">
+                                                    <div class="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 14rem;" tabindex="-1">
                                                         <div>
                                                             <div class="b-card__slideritem-item" style="width: 100%; display: inline-block;">
                                                                 <div class="shop-item" style="height: 20rem;">

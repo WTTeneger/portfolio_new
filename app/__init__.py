@@ -1,5 +1,5 @@
 from flask import *
 from flask_cors import CORS
-app = Flask(__name__)
-CORS(app)
+application = Flask(__name__)
+CORS(application)
 from app import views, api, errors, film_api

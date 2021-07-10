@@ -9,7 +9,7 @@ document.addEventListener('click', function() {
     // //console.log(this, arguments);
     cid = arguments[0]['path'][0];
     //console.log(arguments[0]);
-    //console.log(cid)
+    // console.log(cid)
     if (cid.getAttribute('name')) {
         // //console.log('Нажал по смене меню');
         SNA = cid.getAttribute('name')
@@ -128,6 +128,58 @@ document.addEventListener('click', function() {
                 //console.log(cid.id, screen_width, block_width, count_viber, st);
             }
 
+        } else if (cid.id == 'botton_like') {
+            console.log('работа с лайком');
+
+            let st = false;
+            if (cid.style.backgroundPosition == '22.8% 0%') {
+                cid.style.backgroundPosition = '0% 16.6%'
+                st = false;
+            } else {
+                cid.style.backgroundPosition = '22.8% 0%'
+                st = true;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: '/api/v0.1/post_new_history',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                data: JSON.stringify({
+                    "data": {
+                        "access_tokin": localStorage.getItem('accessToken'),
+                        "last_data": {
+                            "type": "watch_page_film",
+                            "id_film": cid.getAttribute('data-item-id'),
+                            "status": false
+                        }
+                    }
+                }),
+                async: true,
+
+                success: function(data) {
+                    console.log(data);
+                },
+                statusCode: {
+                    405: function(data) {
+                        console.error(data['responseJSON']['errors'])
+                        cid.style.backgroundPosition = '0% 16.6%'
+                    },
+                    400: function(data) {
+                        console.error(data['responseJSON']['errors'])
+                        alert('войдите или зарегайтесь');
+                        cid.style.backgroundPosition = '0% 16.6%'
+                    },
+                    402: function(data) {
+                        console.error(data['responseJSON']['errors'])
+                        cid.style.backgroundPosition = '0% 16.6%'
+                        jwt_new_get()
+
+                    }
+                }
+
+            });
         }
 
 

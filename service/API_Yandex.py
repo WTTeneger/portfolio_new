@@ -35,7 +35,10 @@ class API_Cinema():
         Args:
             id_kinopoisk ([int]): [id Kinopoisk]
         """
-        urls = domen + f'/api/v2.1/films/{id_kinopoisk}?append_to_response={append_to_response}'
+        if(append_to_response == ''):
+             urls = domen + f'/api/v2.1/films/{id_kinopoisk}'
+        else:
+            urls = domen + f'/api/v2.1/films/{id_kinopoisk}?append_to_response={append_to_response}'
         request = requests.get(urls, headers=h)
         if(request.status_code == 200):
             return((request.json()))

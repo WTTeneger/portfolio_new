@@ -26,7 +26,7 @@
                     <h1 class="text_in_main_block"> {{Main_poster['data']['nameRu']}}</h1>
                 </div>
 
-                <div style="padding: 2vh;top: 55%;position: absolute;width: 100%;margin:0;">
+                <div style="padding: 2vh;top: 55%;position: absolute;width: 100%;margin:0; display: none;">
                     <h3 class="text_in_main_block" style="width: 50%; margin: 0 auto;">{{Main_poster['data']['description']}}</h3>
                 </div>
 
@@ -104,7 +104,7 @@
                                             <div class="b-ratinglabel" style="cursor: pointer;">
 
                                                 <div class="b-ratinglabel__value">{{el['rating']}}</div>
-                                                <div class="b-ratinglabel__title">IMDb</div>
+                                                <div class="b-ratinglabel__title">Рейтинг</div>
                                             </div>
                                         </div>
                                     </a>
@@ -150,7 +150,7 @@
                                             <div class="b-ratinglabel" style="cursor: pointer;">
 
                                                 <div class="b-ratinglabel__value">{{el['rating']}}</div>
-                                                <div class="b-ratinglabel__title">IMDb</div>
+                                                <div class="b-ratinglabel__title">Ожидают</div>
                                             </div>
                                         </div>
 
@@ -199,7 +199,7 @@
                                             <div class="b-ratinglabel" style="cursor: pointer;">
 
                                                 <div class="b-ratinglabel__value">{{el['rating']}}</div>
-                                                <div class="b-ratinglabel__title">IMDb</div>
+                                                <div class="b-ratinglabel__title">Рейтинг</div>
                                             </div>
                                         </div>
 
@@ -225,10 +225,18 @@
                         </button>
                     </div>
                 </div>
+
+
+                <footer class="Fut" style="  margin-top: 30px;">
+                    <div class="contentFut data_block" style="padding-bottom: 1rem;">
+                        <p style="margin-block-end: 0em;">Made with love from <br><br><a class="A_href" href="/#About">Amal Agishev</a></p>
+                    </div>
+                </footer>
             </div>
         </div>
 
 
     </div>
 </div>
+
 {% endblock %}

@@ -1,14 +1,14 @@
 from app import app
 from app import *
 
-@app.errorhandler(404)
+@application.errorhandler(404)
 def page_not_found(e):
     return 'ОШИБОЧКА', e.code
     # return render_template("errors.html") #('404.html')
 
 
 
-@app.errorhandler(400)
+@application.errorhandler(400)
 def page_not_found(e):
     return {
         'errors':'Введены неверные данные',
@@ -17,7 +17,7 @@ def page_not_found(e):
 
 
 
-@app.errorhandler(405)
+@application.errorhandler(405)
 def page_not_found(e):
     return {
         'errors':'Вы уже получили данные',
@@ -26,6 +26,6 @@ def page_not_found(e):
 
 
 
-@app.errorhandler(500)
+@application.errorhandler(500)
 def page_not_found_500(e):
     return (e) #('404.html')

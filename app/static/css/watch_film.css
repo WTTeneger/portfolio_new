@@ -95,6 +95,8 @@
     overflow: auto;
     padding: 14px 0 14px 0;
     background: #1d1d1d;
+    width: 94%;
+    margin: 0 auto;
 }
 
 .Name_texts {
@@ -130,6 +132,7 @@
 
 .shop-item {
     transition: transform .2s;
+    /* cursor: pointer; */
 }
 
 .shop-item:hover {

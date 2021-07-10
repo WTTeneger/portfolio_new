@@ -4,7 +4,7 @@ from service import JWT, data_base, theards, user_server_data, API_Yandex
 import time
 from settings import env
 
-@app.route('/FilmAPI/v2.1/search', methods=["POST"])
+@application.route('/FilmAPI/v2.1/search', methods=["POST"])
 def search_film():
     f = request.form
     code = f['code_film'] 
@@ -27,7 +27,7 @@ def search_film():
     
     
     
-@app.route('/FilmAPI/film/<apiK>&<Fname>')
+@application.route('/FilmAPI/film/<apiK>&<Fname>')
 def get_films(apiK, Fname):
     if(apiK):
         f = ''
@@ -45,7 +45,7 @@ def get_films(apiK, Fname):
 
 
 
-@app.route('/filters', methods=['GET','POST'])
+@application.route('/filters', methods=['GET','POST'])
 def film_filters():
     print('rb',request.method )
     filters =request.args.get('ProductFilter')
@@ -106,8 +106,11 @@ def film_filters():
         data = API_Yandex.API_Cinema.get_by_keyword(None, els, page)
         name = f'Поиск по ({els})'
     
-    
+    elif('to_you' in filters):
+        name = f'Поиск по (вашим предпочтениям)'
+        return render_template('FILTER_LIST.html', data = None, genres = genres, name = name, filters=filters)
     else:
+        # abort(404)
         for el in genres['genres']:
             
             # print(int(el['id']) , int(filters), int(el['id']) == int(filters))
@@ -119,11 +122,16 @@ def film_filters():
                     idqq = el['id']
                     break
             except:
+     
                 if(filters == el['genre']):
                     name = el['genre']
                     idqq = el['id']
+                
         # print(idqq, name)
-        data = API_Yandex.API_Cinema.get_film_in_filters(None, genre=[idqq], page=page)
+        try:
+            data = API_Yandex.API_Cinema.get_film_in_filters(None, genre=[idqq], page=page)
+        except:
+            abort(404)
     if(request.method =='GET'):
         return render_template('FILTER_LIST.html', data = data, genres = genres, name = name, filters=filters)
     else:
@@ -131,7 +139,7 @@ def film_filters():
 
 
 
-@app.route('/FilmAPI/v2.1/get_in_text', methods=["POST"])
+@application.route('/FilmAPI/v2.1/get_in_text', methods=["POST"])
 def get_in_text():
     qe = ''
     if request.method == 'POST':
@@ -147,7 +155,7 @@ def get_in_text():
 
 
 
-@app.route('/catalogFilter')
+@application.route('/catalogFilter')
 def catalogFilter():
     filters =request.args.get('ProductFilter')
     page = request.args.get('page')
@@ -157,7 +165,7 @@ def catalogFilter():
 
 
 
-@app.route('/film/torrentcatalog/<fid>')
+@application.route('/film/torrentcatalog/<fid>')
 def torrentcatalog(fid):
     print(fid)
     genres = API_Yandex.API_Cinema.get_filters(None)

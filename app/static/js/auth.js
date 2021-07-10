@@ -19,6 +19,7 @@ function send_form(el) {
             success: function(data) {
                 // console.log(data);
                 localStorage.setItem('accessToken', data['accessToken'])
+                window.location.href = '/film/account'
             },
             statusCode: {
                 405: function(data) {
@@ -56,8 +57,9 @@ function send_form(el) {
             data: JSON.stringify({
                 "data": {
                     "login": d[0].value,
-                    "password": d[1].value,
-                    "email": d[2].value,
+                    "email": d[1].value,
+                    "password": d[2].value,
+
                 },
                 "data_now": Date().toLocaleString("en-US")
             }),
@@ -67,6 +69,7 @@ function send_form(el) {
                 console.log(data);
                 document.getElementsByClassName('main_div_auth')[0].style = 'transform: translateX(-66.6%);'
                 localStorage.setItem('lg', data['lg'])
+
 
             },
             statusCode: {

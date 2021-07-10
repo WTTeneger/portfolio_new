@@ -5,14 +5,14 @@ from service import JWT, data_base, theards, user_server_data, API_Yandex
 from settings import env
 
 
-@app.route('/')
+@application.route('/')
 def index():
     access = True
     return render_template('main.html', access = access)
 
 
 
-@app.route('/film')
+@application.route('/film')
 def film_new():
     
     Top_now = API_Yandex.API_Cinema.get_top_films(None)
@@ -46,8 +46,8 @@ def film_new():
 
 
 
-@app.route('/datafilm/<id>')
-@app.route('/infofilm/<id>')
+@application.route('/datafilm/<id>')
+@application.route('/infofilm/<id>')
 def info_film(id):
     code = id
     test = False
@@ -96,14 +96,66 @@ def info_film(id):
         photo_data['frames'][0]
     except:
         photo_data = False
-    print(data)
-    return render_template('main_info.html', test=test, data=data, photo_data=photo_data, trailer_data = trailer_data, sequels_data=sequels_data, similars_data=similars_data, genres=genres, film_id = f)
-
-
-@app.route('/film/auth')
-def film_auth():
+    # print(data)
+    otv = []
+    if(request.cookies.get('refreshToken')):
+        otv = JWT.tokinService.decodeTokins(None, type_sc="REFRESH", JWT_text=request.cookies.get('refreshToken'))
+        print(otv)
+        print(data['data']['filmId'])
+        z = f"""SELECT * FROM `likeng`, `users` WHERE from_user = {otv['payload']['data']['id_user']} and id_film = {data['data']['filmId']}"""
+        print(z)
+        otv = data_base.DB.GET(z)
     
+    return render_template('main_info.html', test=test, data=data, photo_data=photo_data, trailer_data = trailer_data, sequels_data=sequels_data, similars_data=similars_data, genres=genres, film_id = f, like = (len(otv)>0))
+
+
+@application.route('/film/auth')
+def film_auth():
     genres = API_Yandex.API_Cinema.get_filters(None)
+    print(request.cookies.get('refreshToken'))
+    if(request.cookies.get('refreshToken')):
+        otv = JWT.tokinService.decodeTokins(None, type_sc="REFRESH", JWT_text=request.cookies.get('refreshToken'))
+        print(otv,'\n\n\n')
+        status_tokin, types_status = JWT.tokinService.checkTokins(None, otv, request.cookies.get('refreshToken'))
+        print(status_tokin, types_status)
+        if not(status_tokin):
+            print('Не действительный по ошибке', types_status)
+            if(types_status == 'NotFound'):
+                res = make_response(render_template('auth.html', genres=genres))
+                res.set_cookie('refreshToken', 's', 0)
+                return(res, 200)
+            if(types_status == 'timeEnd'):
+                res = make_response(render_template('auth.html', genres=genres))
+                res.set_cookie('refreshToken', 's', 0)
+                return(res, 200)
+        if(status_tokin):
+            return redirect('/film/account')
+    else:
+        print('не входил')
+    
     return render_template('auth.html', genres=genres)
 
 
+@application.route('/film/account')
+def film_account():
+    genres = API_Yandex.API_Cinema.get_filters(None)
+    if(request.cookies.get('refreshToken')):
+        otv = JWT.tokinService.decodeTokins(None, type_sc="REFRESH", JWT_text=request.cookies.get('refreshToken'))
+        print(otv,'\n\n\n')
+        status_tokin, types_status = JWT.tokinService.checkTokins(None, otv, request.cookies.get('refreshToken'))
+        print(status_tokin, types_status)
+        if not(status_tokin):
+            print('Не действительный по ошибке', types_status)
+            if(types_status == 'NotFound'):
+                return redirect('/film/auth')
+            if(types_status == 'timeEnd'):
+                res = make_response(render_template('auth.html', genres=genres))
+                res.set_cookie('refreshToken', 's', 0)
+                return redirect('/film/auth')
+    else:
+        return redirect('/film/auth')
+
+    
+
+    res = make_response(render_template('account.html', genres=genres))
+    return (res, 200)
