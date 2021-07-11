@@ -19,6 +19,28 @@ def film_new():
     Top_wating = API_Yandex.API_Cinema.get_top_films(None, types='TOP_AWAIT_FILMS')
     Top_clasic = API_Yandex.API_Cinema.get_top_films(None, types='TOP_250_BEST_FILMS')
 
+    data_semular = False
+    if request.cookies.get('refreshToken'):
+        try:
+            otv = JWT.tokinService.decodeTokins(None, type_sc="REFRESH", JWT_text=request.cookies.get('refreshToken'))
+            return_data_db = data_base.DB.GET(f"SELECT DISTINCT id_film FROM `history` WHERE from_user = {otv['payload']['data']['id_user']} ORDER BY data DESC LIMIT 10")
+            print(return_data_db)
+            data_semular = {'items':[]}
+            for el in return_data_db:
+                semulars = API_Yandex.API_Cinema.get_similars_film(None, el[0])
+                for fimsq in semulars['items']:
+                    if(len(data_semular)< 20):
+                        data_semular['items'].append(fimsq)
+                    else:
+                        break
+                # print(el[0], semulars)
+            print(data_semular)
+        except:
+            pass
+    # simular_you_list = API_Yandex.API_Cinema.get_similars_film(None, )
+
+
+
     # print(Top_now['films'][0]['filmId'])
     mPhoto = API_Yandex.API_Cinema.get_frame_film(None, Top_now['films'][0]['filmId'])
     info_films = API_Yandex.API_Cinema.get_data_film(None, Top_now['films'][0]['filmId'])
@@ -41,7 +63,7 @@ def film_new():
         # res = make_response(render_template('watch_films.html',test=False, Main_poster=Main_poster, genres=genres, Top_now=Top_now, Top_wating=Top_wating, Top_clasic=Top_clasic))
         # res.set_cookie('account_hash', account_hash, 60*60*200)
     # else
-    res = render_template('watch_films.html',test=False, Main_poster=Main_poster, genres=genres, Top_now=Top_now, Top_wating=Top_wating, Top_clasic=Top_clasic)
+    res = render_template('watch_films.html',test=False, data_semular=data_semular, Main_poster=Main_poster, genres=genres, Top_now=Top_now, Top_wating=Top_wating, Top_clasic=Top_clasic)
     return res
 
 

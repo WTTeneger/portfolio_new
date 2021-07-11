@@ -40,6 +40,7 @@ def api_register_user():
     else:
         abort(404)
 
+
 @application.route('/api/v0.1/verificate', methods=['POST', "GET"])
 def api_verificate_user():
     req = request.data.decode()
@@ -57,6 +58,7 @@ def api_verificate_user():
                 return({'errors':'Нет проверяемого аккаунта'}, 400)
     else:
         abort(404)
+
 
 @application.route('/api/v0.1/login', methods=['POST', "GET"])
 def api_login_user():
@@ -168,11 +170,11 @@ def api_refresh_tokin_user():
                 return(res, 200)
             else:
                 res = make_response({'errors':'Не верный пароль'})
-                res.set_cookie('refreshToken', 0, 0)
+                res.set_cookie('refreshToken', '0', 0)
                 return(res, 400)
         else:
             res = make_response({'errors':'Нет аккаунта'})
-            res.set_cookie('refreshToken', 0, 0)
+            res.set_cookie('refreshToken', '0', 0)
             return(res, 400)
     else:
         res = make_response({'errors':'Не авторизирован'})
@@ -193,17 +195,24 @@ def api_post_new_history():
                 status_tokin, types_status = JWT.tokinService.checkTokins(None, otv)
                 if(status_tokin):
                     print(f['data']['last_data']['type'] )
-                    if(f['data']['last_data']['type'] == 'watch_page_film'):
+                    if(f['data']['last_data']['type'] == 'like_film'):
                         # print(otv['payload']['data']['id_user'])
                         var = data_base.DB.GET(f"""SELECT * FROM likeng WHERE from_user  = {otv['payload']['data']['id_user']} and id_film = {f['data']['last_data']['id_film']} """)
                         # print(var)
                         if(len(var)>0):
                             data_base.DB.POST(f"""DELETE FROM likeng WHERE from_user = {otv['payload']['data']['id_user']} and id_film = {f['data']['last_data']['id_film']} """)
-                            print('Удалил')
+                            return('Удалил like', 200)
                         else:
                             zapr = f"""INSERT INTO likeng VALUES(null, {otv['payload']['data']['id_user']}, {f['data']['last_data']['id_film']}, '{datetime.datetime.now()}')"""
                             data_base.DB.POST(zapr)
-                            print('Добавил')
+                            return('Добавил like', 200)
+                            # print('Добавил')
+                    if(f['data']['last_data']['type'] == 'watch_page_film'):
+                        zapr = f"""INSERT INTO history VALUES(null, {otv['payload']['data']['id_user']}, {f['data']['last_data']['id_film']}, '{datetime.datetime.now()}')"""
+                        data_base.DB.POST(zapr)
+                        return('Добавил history', 200)
+                        # print('Добавил')
+                        pass
                     return(f['data']['last_data'])
                 else:
                     return({'errors':'Код старый'}, 402)
@@ -217,28 +226,41 @@ def api_post_new_history():
         return(res, 400)
 
 
-@application.route('/api/v0.1/get_likend', methods=['POST', "GET"])
+@application.route('/api/v0.1/get_hist', methods=['POST', "GET"])
 def api_get_likend():  
     if request.cookies.get('refreshToken'):
         req = request.data.decode()
         # print(req)
         if(req != ''):
             f = json.loads(req)
-            if('data' in f and ('access_tokin')):
-                print(f)
+            if('data' in f and ('access_tokin' and 'type' in f['data'])):
                 otv = JWT.tokinService.decodeTokins(None, type_sc="ACCESS", JWT_text=f['data']['access_tokin'])
                 print(otv)
                 status_tokin, types_status = JWT.tokinService.checkTokins(None, otv)
                 if(status_tokin):
-                    if('id_user' in f['data'] and f['data']['id_user'] != otv['payload']['data']['id_user']):
-                        
-                        otv = data_base.DB.GET(f"SELECT * FROM `likeng`, `users` WHERE from_user = {f['data']['id_user']} and (users.id = {f['data']['id_user']} and users.sharing = 0)")
+                    page = 0
+                    if('page' in f['data']):
+                        page = f['data']['page']
+                    if(f['data']['type'] == 'like'):
+                        if('id_user' in f['data'] and f['data']['id_user'] != otv['payload']['data']['id_user']):
+                            otv = data_base.DB.GET(f"SELECT * FROM `likeng`, `users` WHERE from_user = {f['data']['id_user']} and (users.id = {f['data']['id_user']} and users.sharing = 0) ORDER BY data DESC LIMIT 10 OFFSET {page*10} ")
+                        else:
+                            otv = data_base.DB.GET(f"SELECT * FROM `likeng` WHERE from_user = {otv['payload']['data']['id_user']} ORDER BY data DESC LIMIT 10 OFFSET {page*10}")
+                        data = {'films':[]}
+                        for el in otv:
+                            data['films'].append(API_Yandex.API_Cinema.get_data_film(None, el[2], ''))
+                        return(data, 200)
+                    if(f['data']['type'] == 'history'):
+                        if('id_user' in f['data'] and f['data']['id_user'] != otv['payload']['data']['id_user']):
+                            otv = data_base.DB.GET(f"SELECT * FROM `history`, `users` WHERE from_user = {f['data']['id_user']} and (users.id = {f['data']['id_user']} and users.sharing = 0) ORDER BY data DESC LIMIT 10 OFFSET {page*10} ")
+                        else:
+                            otv = data_base.DB.GET(f"SELECT * FROM `history` WHERE from_user = {otv['payload']['data']['id_user']} ORDER BY data DESC LIMIT 10 OFFSET {page*10} ")
+                        data = {'films':[]}
+                        for el in otv:
+                            data['films'].append(API_Yandex.API_Cinema.get_data_film(None, el[2], ''))
+                        return(data, 200)
                     else:
-                        otv = data_base.DB.GET(f"SELECT * FROM `likeng` WHERE from_user = {otv['payload']['data']['id_user']}")
-                    data = {'films':[]}
-                    for el in otv:
-                        data['films'].append(API_Yandex.API_Cinema.get_data_film(None, el[2], ''))
-                    return(data, 200)
+                        return({'errors':'Не верный формат'}, 400)
                 else:
                     return({'errors':'Код старый'}, 402)
             else:

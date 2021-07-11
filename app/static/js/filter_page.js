@@ -7,7 +7,7 @@ var endB =
             //// console.log(sliders);
         block_width = sliders.offsetHeight;
         endB = (block_width) - ($(window).height()) - 700
-        console.log('sa', $(window).scrollTop(), endB, tr);
+            // console.log('sa', $(window).scrollTop(), endB, tr);
         if ($(window).scrollTop() > endB && tr == true) {
             // block_width = sliders.offsetHeight;
             tr = false

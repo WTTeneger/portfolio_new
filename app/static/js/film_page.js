@@ -197,3 +197,49 @@ $(window).resize(function() {
 
 });
 setTimeout(set_size, 4000, 0);
+
+
+
+
+$(document).ready(function() {
+    function send_history() {
+        // console.log('Отправляем историю');
+        $.ajax({
+            type: "POST",
+            url: '/api/v0.1/post_new_history',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            data: JSON.stringify({
+                "data": {
+                    "access_tokin": localStorage.getItem('accessToken'),
+                    "last_data": {
+                        "type": "watch_page_film",
+                        "id_film": document.getElementById('botton_like').getAttribute('data-item-id'),
+                        "status": false
+                    }
+                }
+            }),
+            async: true,
+
+            success: function(data) {
+                console.log(data);
+            },
+            statusCode: {
+                405: function(data) {
+                    console.error(data['responseJSON']['errors'])
+                },
+                400: function(data) {
+                    console.error(data['responseJSON']['errors'])
+                    alert('войдите или зарегайтесь');
+                },
+                402: function(data) {
+                    console.error(data['responseJSON']['errors'])
+                    jwt_new_get()
+                }
+            }
+
+        });
+    }
+    setTimeout(send_history, 20000);
+});

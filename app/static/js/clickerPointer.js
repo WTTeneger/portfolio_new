@@ -90,7 +90,6 @@ document.addEventListener('click', function() {
             d = localStorage.getItem('find_data')
             document.location.href = '/filters?ProductFilter=allFilm_' + d + '&page=1'
         } else if (cid.id == 'info_page') {
-
             console.log('Открываем');
         } else if (cid.id == 'film_') {
             //console.log('Фильтр - ', cid.getAttribute('name'));
@@ -129,7 +128,7 @@ document.addEventListener('click', function() {
             }
 
         } else if (cid.id == 'botton_like') {
-            console.log('работа с лайком');
+            // console.log('работа с лайком');
 
             let st = false;
             if (cid.style.backgroundPosition == '22.8% 0%') {
@@ -150,7 +149,7 @@ document.addEventListener('click', function() {
                     "data": {
                         "access_tokin": localStorage.getItem('accessToken'),
                         "last_data": {
-                            "type": "watch_page_film",
+                            "type": "like_film",
                             "id_film": cid.getAttribute('data-item-id'),
                             "status": false
                         }

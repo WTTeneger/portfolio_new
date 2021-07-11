@@ -28,7 +28,7 @@ function send_form(el) {
                     <strong>Ошибочка!</strong> ${data.responseJSON['errors']}.
                     `
                     document.getElementsByClassName('alert')[0].style.opacity = "1";
-                    console.log(data.responseJSON);
+                    // console.log(data.responseJSON);
 
                 },
                 400: function(data) {
@@ -37,7 +37,7 @@ function send_form(el) {
                     <strong>Ошибочка!</strong> ${data.responseJSON['errors']}.
                     `
                     document.getElementsByClassName('alert')[0].style.opacity = "1";
-                    console.log(data.responseJSON);
+                    // console.log(data.responseJSON);
 
                 }
             }
@@ -66,7 +66,7 @@ function send_form(el) {
             async: true,
 
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 document.getElementsByClassName('main_div_auth')[0].style = 'transform: translateX(-66.6%);'
                 localStorage.setItem('lg', data['lg'])
 
@@ -79,7 +79,7 @@ function send_form(el) {
                     <strong>Ошибочка!</strong> ${data.responseJSON['errors']}.
                     `
                     document.getElementsByClassName('alert')[0].style.opacity = "1";
-                    console.log(data.responseJSON);
+                    // console.log(data.responseJSON);
 
                 },
                 400: function(data) {
@@ -88,7 +88,7 @@ function send_form(el) {
                     <strong>Ошибочка!</strong> ${data.responseJSON['errors']}.
                     `
                     document.getElementsByClassName('alert')[0].style.opacity = "1";
-                    console.log(data.responseJSON);
+                    // console.log(data.responseJSON);
 
                 }
             }
@@ -102,7 +102,7 @@ function send_form(el) {
         var codes = document.getElementById('num1').value +
             document.getElementById('num2').value +
             document.getElementById('num3').value
-        console.log(codes);
+            // console.log(codes);
         $.ajax({
             type: "POST",
             url: '/api/v0.1/verificate',
@@ -118,7 +118,7 @@ function send_form(el) {
             async: true,
 
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 document.getElementsByClassName('main_div_auth')[0].style = 'transform: translateX(0%);'
                 localStorage.removeItem('lg')
                 document.getElementsByClassName('alert')[0].innerHTML = `
@@ -135,7 +135,7 @@ function send_form(el) {
                     <strong>Ошибочка!</strong> ${data.responseJSON['errors']}.
                     `
                     document.getElementsByClassName('alert')[0].style.opacity = "1";
-                    console.log(data.responseJSON);
+                    // console.log(data.responseJSON);
 
                 },
                 400: function(data) {
@@ -144,7 +144,7 @@ function send_form(el) {
                     <strong>Ошибочка!</strong> ${data.responseJSON['errors']}.
                     `
                     document.getElementsByClassName('alert')[0].style.opacity = "1";
-                    console.log(data.responseJSON);
+                    // console.log(data.responseJSON);
 
                 }
             }
@@ -154,7 +154,7 @@ function send_form(el) {
 }
 
 function trans(el) {
-    console.log(el);
+    // console.log(el);
     document.getElementById('form_sended_1_text').style.display = 'none';
     if (el == 'reg_key') {
         document.getElementsByClassName('main_div_auth')[0].style = 'transform: translateX(-33.3%);'

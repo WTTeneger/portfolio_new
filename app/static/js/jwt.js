@@ -8,7 +8,7 @@ function jwt_new_get() {
         async: true,
 
         success: function(data) {
-            console.log(data);
+            // console.log(data);
             localStorage.setItem('accessToken', data['accessToken'])
         },
         statusCode: {

@@ -106,9 +106,31 @@ def film_filters():
         data = API_Yandex.API_Cinema.get_by_keyword(None, els, page)
         name = f'Поиск по ({els})'
     
+
     elif('to_you' in filters):
         name = f'Поиск по (вашим предпочтениям)'
-        return render_template('FILTER_LIST.html', data = None, genres = genres, name = name, filters=filters)
+        data_semular = {'films':[]}
+        if request.cookies.get('refreshToken'):
+            try:
+                otv = JWT.tokinService.decodeTokins(None, type_sc="REFRESH", JWT_text=request.cookies.get('refreshToken'))
+                # print(otv)
+                return_data_db = data_base.DB.GET(f"SELECT DISTINCT id_film FROM `history` WHERE from_user = {otv['payload']['data']['id_user']} ORDER BY data DESC LIMIT 10 ")
+                print(return_data_db)
+                # print(data_semular)
+                for el in return_data_db:
+                    semulars = API_Yandex.API_Cinema.get_similars_film(None, el[0])
+                    # print(semulars)
+                    for fimsq in semulars['items']:
+                        data_semular['films'].append(fimsq)
+                    # print(el[0], semulars)
+                # print(data_semular)
+            except:
+                print('sa')
+                pass
+        if(request.method =='GET'):
+            return render_template('FILTER_LIST.html', data = data_semular, genres = genres, name = name, filters=filters)
+        else:
+            return('bash', 400)
     else:
         # abort(404)
         for el in genres['genres']:
