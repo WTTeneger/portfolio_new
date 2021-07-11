@@ -516,8 +516,12 @@ html::-webkit-scrollbar {
 }
 
 .cont {
+    /*
+    
     padding-left: 52px;
     padding-right: 52px;
+
+    */
     margin: 0 auto;
     max-width: 800px;
 }

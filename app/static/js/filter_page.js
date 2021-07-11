@@ -14,7 +14,7 @@ var endB =
 
             //Пользователь долистал до низа страницы
             filter = document.getElementById('film_').getAttribute('name')
-                //// console.log('\n\n\nqwe\n\n\n' + data_page, tr);
+                // console.log('\n\n\nqwe\n\n\n' + data_page, tr);
                 // console.log('data_page', data_page);
             url = '/filters?ProductFilter=' + filter + '&page=' + data_page
             $.ajax({

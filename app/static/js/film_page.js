@@ -189,9 +189,9 @@ function set_size(q = 0) {
 
 $(window).resize(function() {
     if (changess == false) {
-        //console.log('true')
+        console.log('true')
         changess = true
-        setTimeout(set_size, 3000, 0);
+        setTimeout(set_size, 4000, 0);
     }
 
 
@@ -200,7 +200,7 @@ setTimeout(set_size, 4000, 0);
 
 
 
-
+// Создание истории просмотра
 $(document).ready(function() {
     function send_history() {
         // console.log('Отправляем историю');

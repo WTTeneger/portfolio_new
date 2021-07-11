@@ -31,7 +31,7 @@
                                     <a class="shop-item__image" href="/infofilm/{{el['filmId']}}">
                                         <img class="loaded" style="-webkit-mask:none; width:100%; max-height: 370px;" src="{{el['posterUrl']}}" alt="{{el['nameRu']}}">
                                         <div class="b-card__img-ratinglabels">
-                                            {%if '%' in el['rating']%}
+                                            {%if 'rating' in el%} {%if '%' in el['rating']%}
                                             <div class="b-ratinglabel" style="cursor: pointer;">
                                                 <div class="b-ratinglabel__value">{{el['rating']}}</div>
                                                 <div class="b-ratinglabel__title">Ожидают</div>
@@ -41,7 +41,7 @@
                                                 <div class="b-ratinglabel__value">{{el['rating']}}</div>
                                                 <div class="b-ratinglabel__title">rating</div>
                                             </div>
-                                            {%endif%}
+                                            {%endif%} {%endif%}
                                         </div>
 
                                     </a>

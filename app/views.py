@@ -11,6 +11,12 @@ def index():
     return render_template('main.html', access = access)
 
 
+@application.route('/workline')
+def workline():
+    access = True
+    return render_template('work_line.html', access = access)
+
+
 
 @application.route('/film')
 def film_new():
